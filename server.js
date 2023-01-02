@@ -1,5 +1,6 @@
 // load .env data into process.env
 require('dotenv').config();
+const cookieSession = require('cookie-session');
 
 // Web server config
 const sassMiddleware = require('./lib/sass-middleware');
@@ -26,6 +27,11 @@ app.use(
 );
 app.use(express.static('public'));
 
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}));
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const userApiRoutes = require('./routes/users-api');
@@ -45,8 +51,31 @@ app.use('/users', usersRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
-  res.render('index');
+const id = req.session.user_id;
+//fetch user from database
+const user = {id, name: "Alice"};
+console.log(user);
+if (!user) {
+  res.render('menu');
+  return;
+}
+
+
+
+  res.render('index', {user});
 });
+
+app.get('/login/:id', (req, res) => {
+  const id = req.params.id;
+// Save id in session
+  req.session.user_id = id;
+
+
+
+  res.redirect('/');
+});
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
