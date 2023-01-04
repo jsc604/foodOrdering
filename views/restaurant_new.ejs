@@ -74,7 +74,7 @@
 
             <td>
               <form method="POST" action="/orders/start-order">
-                <input type="hidden" value="start" name="status"/>
+                <input type="hidden" value=<%=ordersObject[order].id%> name="start_order"/>
                 <button type="submit" class="btn start-order btn-danger">Start Order</button>
               </form>
             </td>

@@ -9,14 +9,15 @@ router.get('/new', (req, res) => {
       const ordersObject = {};
 
       for (let order of newOrders) {
-        if (!ordersObject[order.id]) {
-          ordersObject[order.id] = {
-            id: order.id,
-            name: order.name,
-            items: [order.item]
+        if (!ordersObject[order.order_id]) {
+          ordersObject[order.order_id] = {
+            id: order.order_id,
+            name: order.customer_name,
+            items: [`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`],
+            completed_at: order.completed_at
           };
         } else {
-          ordersObject[order.id].items.push(order.item);
+          ordersObject[order.order_id].items.push(`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`);
         }
       }
 
@@ -33,15 +34,15 @@ router.get('/complete', (req, res) => {
       const ordersObject = {};
 
       for (let order of completedOrders) {
-        if (!ordersObject[order.id]) {
-          ordersObject[order.id] = {
-            id: order.id,
-            name: order.name,
-            items: [order.item],
+        if (!ordersObject[order.order_id]) {
+          ordersObject[order.order_id] = {
+            id: order.order_id,
+            name: order.customer_name,
+            items: [`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`],
             completed_at: order.completed_at
           };
         } else {
-          ordersObject[order.id].items.push(order.item);
+          ordersObject[order.order_id].items.push(`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`);
         }
       }
 
@@ -54,7 +55,14 @@ router.get('/complete', (req, res) => {
 
 // POST START ORDER
 router.post('/start-order', (req, res) => {
-  console.log(req.body);
+  console.log(req.body.start_order);
+  const customerId = req.body.start_order;
+  userQueries.startOrder(customerId)
+    .then(data => {
+      console.log('......order recorded.......');
+      return;
+    });
+
 });
 
 //POST COMPLETE ORDER
