@@ -17,6 +17,8 @@ app.set('view engine', 'ejs');
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.use(
   '/styles',
   sassMiddleware({
@@ -64,6 +66,9 @@ if (!user) {
 
   res.render('index', {user});
 });
+app.get('/popup', (req, res) => {
+  res.render('popup');
+})
 
 app.get('/login/:id', (req, res) => {
   const id = req.params.id;
@@ -73,6 +78,15 @@ app.get('/login/:id', (req, res) => {
 
 
   res.redirect('/');
+});
+
+app.post('/echo', (req, res) => {
+  console.log("body", req.body);
+  //const data =
+  res.json(req.body);
+});
+app.get('/menu', (req, res) => {
+  res.render('menu');
 });
 
 app.get('/new-orders', (req, res) => {
