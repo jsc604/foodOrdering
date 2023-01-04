@@ -52,6 +52,16 @@ router.get('/complete', (req, res) => {
     });
 });
 
+// POST START ORDER
+router.post('/start-order', (req, res) => {
+  console.log(req.body);
+});
+
+//POST COMPLETE ORDER
+router.post('/complete-order', (req, res) => {
+  console.log(req.body);
+});
+
 // POST PICKUP ORDER
 router.post('/complete', (req, res) => {
   console.log(req.body);

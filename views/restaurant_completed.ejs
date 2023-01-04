@@ -20,7 +20,10 @@
       crossorigin="anonymous"
     />
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/orders.js"></script>
 </head>
 
 <body>
@@ -46,7 +49,7 @@
       </thead>
       <tbody>
         <% for (let order in ordersObject) { %>
-          <tr>
+          <tr class="completed-row">
 
             <td>
               <%= ordersObject[order].id %>
@@ -67,7 +70,7 @@
                   <%}%>
                 </table>
               </td>
-              
+
               <td>
                 <%= ordersObject[order].completed_at %>
               </td>
@@ -75,7 +78,7 @@
               <td>
               <form method="POST" action="/orders/complete">
                 <input type="hidden" value="picked_up" name="status"/>
-                <button type="submit" class="btn btn-success">Picked Up</button>
+                <button type="submit" class="btn pick-up btn-success" >Picked Up</button>
               </form>
             </td>
           </tr>
