@@ -7,6 +7,6 @@ CREATE TABLE orders (
   estimated_prep_time INTEGER NOT NULL,
   order_time TIMESTAMP NOT NULL,
   start_time TIMESTAMP,
-  competion_time TIMESTAMP,
+  completion_time TIMESTAMP,
   total_price INTEGER NOT NULL
 );

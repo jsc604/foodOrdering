@@ -28,7 +28,7 @@
     <nav class="navbar navbar-expand-md navbar-dark>
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="/orders/new">New Orders</a>
-          <a class="nav-item nav-link" href="/completed-orders">Completed orders</a>
+          <a class="nav-item nav-link" href="/orders/complete">Completed orders</a>
         </div>
     </nav>
   </header>
@@ -41,11 +41,45 @@
           <th scope="col">Customer Name</th>
           <th scope="col">Items</th>
           <th scope="col">Completed At</th>
+          <th scope="col">Picked up</th>
         </tr>
       </thead>
       <tbody>
+        <% for (let order in ordersObject) { %>
+          <tr>
 
+            <td>
+              <%= ordersObject[order].id %>
+            </td>
 
+            <td>
+              <%= ordersObject[order].name %>
+            </td>
+
+            <td>
+              <table>
+                <% for (let item of ordersObject[order].items) { %>
+                  <tr>
+                    <td class="nested">
+                      <%= item %>
+                    </td>
+                  </tr>
+                  <%}%>
+                </table>
+              </td>
+              
+              <td>
+                <%= ordersObject[order].completed_at %>
+              </td>
+
+              <td>
+              <form method="POST" action="/orders/complete">
+                <input type="hidden" value="picked_up" name="status"/>
+                <button type="submit" class="btn btn-success">Picked Up</button>
+              </form>
+            </td>
+          </tr>
+          <%}%>
       </tbody>
     </table>
   </div>

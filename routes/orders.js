@@ -6,18 +6,55 @@ const userQueries = require('../db/queries/orders');
 router.get('/new', (req, res) => {
   userQueries.getNewOrders()
     .then(newOrders => {
-      console.log('----', newOrders);
-      const templateVars = { newOrders };
+      const ordersObject = {};
+
+      for (let order of newOrders) {
+        if (!ordersObject[order.id]) {
+          ordersObject[order.id] = {
+            id: order.id,
+            name: order.name,
+            items: [order.item]
+          };
+        } else {
+          ordersObject[order.id].items.push(order.item);
+        }
+      }
+
+      const templateVars = { ordersObject };
       res.render('restaurant_new', templateVars);
+      return;
     });
 });
 
 // GET COMPLETED ORDERS
-// router.get('/complete' (req, res) => {
+router.get('/complete', (req, res) => {
+  userQueries.getCompletedOrders()
+    .then(completedOrders => {
+      const ordersObject = {};
 
-// })
-// router.post('/new', (req, res) => {
-//   console.log('inside this post route', req.body);
-// });
+      for (let order of completedOrders) {
+        if (!ordersObject[order.id]) {
+          ordersObject[order.id] = {
+            id: order.id,
+            name: order.name,
+            items: [order.item],
+            completed_at: order.completed_at
+          };
+        } else {
+          ordersObject[order.id].items.push(order.item);
+        }
+      }
+
+      console.log('----', completedOrders);
+      const templateVars = { ordersObject };
+      res.render('restaurant_completed', templateVars);
+      return;
+    });
+});
+
+// POST PICKUP ORDER
+router.post('/complete', (req, res) => {
+  console.log(req.body);
+});
 
 module.exports = router;

@@ -28,7 +28,7 @@
     <nav class="navbar navbar-expand-md navbar-dark>
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="/orders/new">New Orders</a>
-          <a class="nav-item nav-link" href="/completed-orders">Completed orders</a>
+          <a class="nav-item nav-link" href="/orders/complete">Completed orders</a>
         </div>
     </nav>
   </header>
@@ -40,22 +40,37 @@
           <th scope="col">Order ID</th>
           <th scope="col">Customer Name</th>
           <th scope="col">Items</th>
+          <!-- <th scope="col">Options</th>
+          <th scope="col">Add-Ons</th> -->
           <th scope="col">Start Order</th>
           <th scope="col">Complete</th>
         </tr>
       </thead>
       <tbody>
-        <% for (let order in newOrders) { %>
+        <% for (let order in ordersObject) { %>
           <tr>
+
             <td>
-              <%= newOrders[order].id %>
+              <%= ordersObject[order].id %>
             </td>
+
             <td>
-              <%= newOrders[order].name %>
+              <%= ordersObject[order].name %>
             </td>
+
             <td>
-              <%= newOrders[order].item %>
-            </td>
+              <table>
+                <% for (let item of ordersObject[order].items) { %>
+                  <tr>
+                    <td class="nested">
+                      <%= item %>
+                    </td>
+                  </tr>
+                  <%}%>
+                </table>
+              </td>
+
+
             <td>
               <form method="POST" action="/orders/new">
                 <input type="hidden" value="start" name="status"/>
