@@ -27,7 +27,7 @@
   <header>
     <nav class="navbar navbar-expand-md navbar-dark>
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/new-orders">New Orders</a>
+          <a class="nav-item nav-link" href="/orders/new">New Orders</a>
           <a class="nav-item nav-link" href="/completed-orders">Completed orders</a>
         </div>
     </nav>
@@ -45,73 +45,32 @@
         </tr>
       </thead>
       <tbody>
+        <% for (let order in newOrders) { %>
           <tr>
             <td>
-              00001
+              <%= newOrders[order].id %>
             </td>
             <td>
-              person 1
+              <%= newOrders[order].name %>
             </td>
             <td>
-              item 1<br>
-              item 2<br>
-              item 3<br>
+              <%= newOrders[order].item %>
             </td>
             <td>
-              <form method="POST" action="/new-orders">
+              <form method="POST" action="/orders/new">
+                <input type="hidden" value="start" name="status"/>
                 <button type="submit" class="btn btn-success">Start Order</button>
               </form>
             </td>
             <td>
-              <form method="POST" action="/new-orders">
+              <form method="POST" action="/orders/new">
+                <input type="hidden" value="complete" name="status"/>
                 <button type="submit" class="btn btn-success">Complete</button>
               </form>
             </td>
           </tr>
-          <tr>
-            <td>
-              00002
-            </td>
-            <td>
-              person 2
-            </td>
-            <td>
-              item 1<br>
-              item 2<br>
-            </td>
-            <td>
-              <form method="POST" action="/new-orders">
-                <button type="submit" class="btn btn-success">Start Order</button>
-              </form>
-            </td>
-            <td>
-              <form method="POST" action="/new-orders">
-                <button type="submit" class="btn btn-success">Complete</button>
-              </form>
-            </td>
-          <tr>
-            <td>
-              00003
-            </td>
-            <td>
-              person 3
-            </td>
-            <td>
-              item 1<br>
-              item 3<br>
-            </td>
-            <td>
-              <form method="POST" action="/new-orders">
-                <button type="submit" class="btn btn-success">Start Order</button>
-              </form>
-            </td>
-            <td>
-              <form method="POST" action="/new-orders">
-                <button type="submit" class="btn btn-success">Complete</button>
-              </form>
-            </td>
-          </tr>
-      </tbody>
+          <%}%>
+        </tbody>
     </table>
   </div>
 </body>
