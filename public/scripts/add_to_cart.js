@@ -23,7 +23,8 @@ $(document).ready(function () {
     //submit data
     $.post('/echo', itemData)
       .then(data => {
-        console.log(data)
+        const cart = $('.cart-order-items');
+        cart.append('<p>added item</p>');
       })
 
 
