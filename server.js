@@ -75,7 +75,19 @@ app.get('/login/:id', (req, res) => {
   res.redirect('/');
 });
 
+app.get('/new-orders', (req, res) => {
+  res.render('restaurant_new');
+  return;
+});
 
+app.post('/new-orders', (req, res) => {
+  res.redirect('/completed-orders');
+});
+
+app.get('/completed-orders', (req, res) => {
+  res.render('restaurant_completed');
+  return;
+});
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
