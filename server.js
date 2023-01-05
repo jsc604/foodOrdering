@@ -6,6 +6,7 @@ const cookieSession = require('cookie-session');
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const { messageToCustomer, messageToRestaurant } = require('./twilio');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -90,6 +91,9 @@ app.post('/echo', (req, res) => {
 app.get('/menu', (req, res) => {
   res.render('menu');
 });
+
+
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

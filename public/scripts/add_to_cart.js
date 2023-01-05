@@ -74,6 +74,13 @@ $(document).ready(function () {
       $(".popup").hide();
 
 
+
+
+    // Calculate total price when item added
+      
+
+
+
     // $.ajax({
     //   url: "",
     //   method: 'POST',
