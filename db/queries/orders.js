@@ -4,7 +4,7 @@ const db = require('../connection');
 const getNewOrders = () => {
   return db.query(`
   SELECT o.id AS order_id, c.name AS customer_name, i.name AS item_name,
-       a.name AS item_addon, op.name AS item_option, o.completion_time AS completed_at
+       a.name AS item_addon, op.name AS item_option, o.start_time, o.completion_time AS completed_at
   FROM orders o
   JOIN customers c ON o.customer_id = c.id
   JOIN order_items oi ON o.id = oi.order_id
@@ -14,6 +14,7 @@ const getNewOrders = () => {
   WHERE status = 'incomplete';
   `)
     .then(data => {
+      console.log(data.rows);
       return data.rows;
     });
 };
@@ -43,5 +44,20 @@ const startOrder = (id) => {
     .then(data => {
       return data.rows;
     });
-}
-module.exports = { getNewOrders, getCompletedOrders, startOrder };
+};
+
+// COMPLETE ORDER
+const completeOrder = (id) => {
+  return db.query(`
+  UPDATE orders
+  SET start_time = CURRENT_TIMESTAMP,
+      completion_time = CURRENT_TIMESTAMP,
+      status = 'complete'
+  WHERE id = $1;
+  `, [id])
+    .then(data => {
+      return data.rows;
+    });
+};
+
+module.exports = { getNewOrders, getCompletedOrders, startOrder, completeOrder };

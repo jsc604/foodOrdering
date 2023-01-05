@@ -14,7 +14,8 @@ router.get('/new', (req, res) => {
             id: order.order_id,
             name: order.customer_name,
             items: [`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`],
-            completed_at: order.completed_at
+            completed_at: order.completed_at,
+            start_time: order.start_time
           };
         } else {
           ordersObject[order.order_id].items.push(`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`);
@@ -22,6 +23,7 @@ router.get('/new', (req, res) => {
       }
 
       const templateVars = { ordersObject };
+      console.log(templateVars);
       res.render('restaurant_new', templateVars);
       return;
     });
@@ -55,7 +57,6 @@ router.get('/complete', (req, res) => {
 
 // POST START ORDER
 router.post('/start-order', (req, res) => {
-  console.log(req.body.start_order);
   const customerId = req.body.start_order;
   userQueries.startOrder(customerId)
     .then(data => {
@@ -67,7 +68,13 @@ router.post('/start-order', (req, res) => {
 
 //POST COMPLETE ORDER
 router.post('/complete-order', (req, res) => {
-  console.log(req.body);
+  console.log(req.body.complete_order);
+  const customerId = req.body.complete_order;
+  userQueries.completeOrder(customerId)
+    .then(data => {
+      console.log('......order completed.......');
+      res.json({data});
+    });
 });
 
 // POST PICKUP ORDER

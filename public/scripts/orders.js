@@ -4,7 +4,7 @@ $(() => {
   // PICK UP BUTTON
   $('button.pick-up').click(function() {
     $(this).html('<i class="fa fa-check"></i>');
-
+    $(this).prop('disabled', true);
     $(this).closest('tr').css({
       'opacity': '0.8',
       'background-color': 'lightgreen'
@@ -12,21 +12,19 @@ $(() => {
   });
 
   // START ORDER BUTTON
-  $('button.start-order').click(function() {
+  $('button.start-order').click(function(event) {
+    event.preventDefault();
+
     const currentDateTime = new Date().toString();
+    $(this).text(currentDateTime);
 
-    const dayOfWeek = currentDateTime.slice(0, 3);
-    const month = currentDateTime.slice(4, 7);
-    const dayOfMonth = currentDateTime.slice(8, 10);
+    $(this).closest('tr').find('.btn-success').removeClass('disabled');
 
-    const year = currentDateTime.slice(11, 15);
-    const hour = currentDateTime.slice(16, 18);
-    const minute = currentDateTime.slice(19, 21);
-    const second = currentDateTime.slice(22, 24);
-
-    const formattedDateTime = "Order started: " + dayOfWeek + " " + month + " " + dayOfMonth + " " + year + " " + hour + ":" + minute + ":" + second;
-
-    $(this).text(formattedDateTime);
+    // Check if the button is already disabled
+    if (!$(this).prop('disabled')) {
+      $(this).prop('disabled', true);
+      $(this).closest('form').submit();
+    }
 
     $(this).css({
       'background-color': '#ffc107',
@@ -34,8 +32,18 @@ $(() => {
     });
   });
 
+
   // COMPLETED BUTTON
-  $('.start-order').on('click', function() {
-    $(this).closest('tr').find('.btn-success').removeClass('disabled');
+  $('#completeForm').click(function(event) {
+    event.preventDefault();
+    $.ajax({
+      url: '/orders/complete-order',
+      type: 'POST',
+      data: $('#completeForm').serialize()
+    })
+      .then(function() {
+        location.reload();
+      });
   });
+
 });
