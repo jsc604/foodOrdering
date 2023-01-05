@@ -226,8 +226,35 @@ main {
   background-color: black;
   height: 4em;
   border-radius: 10px;
+  margin-top: 20px;
 }
 
+
+/*CART STYLING ON THE RIGHT */
+.cart-order-items {
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  }
+
+.instruction {
+  font-size: 14px;
+}
+
+.instruction , .item-name {
+  padding-bottom: 10px;
+}
+
+.remove {
+  color: red;
+}
+
+.quantity {
+  background-color: rgb(215, 215, 215) ;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  padding-left: 7%;
+}
 /* ARROW TO GO UP TO TOP OF PAGE */
 .arrow-up {
   position: fixed;
@@ -643,7 +670,7 @@ main {
       <div class="description">
         <img alt="Latte"
           src="https://lh3.googleusercontent.com/2Uk92AII_rYGIioGlaIn7K9YQ-S01nVs05gbHZRwTapw11OUJfe14_0c8od9REiy4pJ0TAq-2Nf4zKZwED8WgzQXBOl5=c-w256">
-        <h2>Latte</h2>
+        <h2 id="item_name">Latte</h2>
         <p>Silky Smooth streamed milk poured over shots of espresso.</p>
       </div>
       <form>
