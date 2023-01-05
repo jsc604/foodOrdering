@@ -230,10 +230,11 @@
       }
 
       /*CART STYLING ON THE RIGHT */
-      .cart-order-items {
+      .cart-order-item {
         padding-top: 5px;
         display: grid;
         grid-template-columns: 40px 190px 50px;
+        padding-bottom: 20px;
       }
 
       .instruction {
@@ -248,6 +249,8 @@
       .remove {
         color: red;
         cursor: pointer;
+        position: relative;
+        font-size: 12px;
       }
 
       .quantity {
@@ -706,7 +709,7 @@
               padding-right: 20px;
             "
           >
-            Checkout <span>Subtotal: $0</span>
+            Checkout <span class="subtotal">$0</span>
           </button>
         </div>
       </div>
