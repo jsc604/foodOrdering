@@ -95,6 +95,18 @@ app.get('/menu', (req, res) => {
 
 
 
+// make an order
+//insert into database
+//send text message to restaurant
+
+
+//POST - after accepting order
+// provide database - return wait time, phone, number, order id
+// send text to customer
+
+
+
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

@@ -43,4 +43,4 @@ const messageToRestaurant = (orderID) => {
     });
 };
 
-module.exports = { messageToCustomer, messageToRestaurant }
+module.exports = { messageToCustomer, messageToRestaurant };
