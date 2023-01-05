@@ -30,423 +30,468 @@
     <script defer src="/scripts/menu.js"></script>
 
     <style>
-        * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-body {
-  font-family: "Poppins", sans-serif;
-}
+      body {
+        font-family: "Poppins", sans-serif;
+      }
 
-main {
-  display: flex;
-  column-gap: 4em;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-}
+      main {
+        display: flex;
+        column-gap: 4em;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+      }
 
-/* LEFT SIDE OF SCREEN INCLUDES INFO + MENU*/
-.left-side-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 20px 0 30px;
-  flex: 2;
-}
+      /* LEFT SIDE OF SCREEN INCLUDES INFO + MENU*/
+      .left-side-screen {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 20px 0 30px;
+        flex: 2;
+      }
 
-/* ABOVE MENU - LOGO/DESCR/ICONS */
-.above-menu-descriptions {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+      /* ABOVE MENU - LOGO/DESCR/ICONS */
+      .above-menu-descriptions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
 
-.above-menu-descriptions > .items {
-  padding-bottom: 20px;
-}
+      .above-menu-descriptions > .items {
+        padding-bottom: 20px;
+      }
 
-.pickup-delivery-options {
-  flex-direction: flex;
-  justify-content: space-between;
-}
+      .pickup-delivery-options {
+        flex-direction: flex;
+        justify-content: space-between;
+      }
 
-/* MENU CATEGORIES - SLIDER */
-.clear {
-  clear: both;
-}
+      /* MENU CATEGORIES - SLIDER */
+      .clear {
+        clear: both;
+      }
 
-.slide-toggle {
-  display: none;
-}
+      .slide-toggle {
+        display: none;
+      }
 
-.slidemenu {
-  max-width: 600px;
-  margin: 50px auto;
-  overflow: hidden;
-}
+      .slidemenu {
+        max-width: 600px;
+        margin: 50px auto;
+        overflow: hidden;
+      }
 
-.slidemenu label {
-  /* width: 25%; */
-  text-align: center;
-  display: block;
-  float: left;
-  color: black;
-  opacity: 0.2;
-}
+      .slidemenu label {
+        /* width: 25%; */
+        text-align: center;
+        display: block;
+        float: left;
+        color: black;
+        opacity: 0.2;
+      }
 
-.slidemenu label:hover {
-  cursor: pointer;
-  color: gray;
-}
+      .slidemenu label:hover {
+        cursor: pointer;
+        color: gray;
+      }
 
-.slidemenu label span {
-  display: block;
-  padding: 10px;
-}
+      .slidemenu label span {
+        display: block;
+        padding: 10px;
+      }
 
-/* BAR */
-.slider {
-  width: 100%;
-  height: 2px;
-  display: block;
-  background-color: rgb(211, 211, 211);
-  margin-top: 10px;
-  border-radius: 5px;
-}
+      /* BAR */
+      .slider {
+        width: 100%;
+        height: 2px;
+        display: block;
+        background-color: rgb(211, 211, 211);
+        margin-top: 10px;
+        border-radius: 5px;
+      }
 
-.slider .bar {
-  width: 25%;
-  height: 5px;
-  background: black;
-  border-radius: 2px;
-}
-.slidemenu .slide-toggle:checked + label {
-  opacity: 1;
-}
+      .slider .bar {
+        width: 25%;
+        height: 5px;
+        background: black;
+        border-radius: 2px;
+      }
+      .slidemenu .slide-toggle:checked + label {
+        opacity: 1;
+      }
 
-.slidemenu #slide-item-1:checked ~ .slider .bar {
-  margin-left: 0;
-}
-.slidemenu #slide-item-2:checked ~ .slider .bar {
-  margin-left: 25%;
-}
-.slidemenu #slide-item-3:checked ~ .slider .bar {
-  margin-left: 50%;
-}
-.slidemenu #slide-item-4:checked ~ .slider .bar {
-  margin-left: 75%;
-}
+      .slidemenu #slide-item-1:checked ~ .slider .bar {
+        margin-left: 0;
+      }
+      .slidemenu #slide-item-2:checked ~ .slider .bar {
+        margin-left: 25%;
+      }
+      .slidemenu #slide-item-3:checked ~ .slider .bar {
+        margin-left: 50%;
+      }
+      .slidemenu #slide-item-4:checked ~ .slider .bar {
+        margin-left: 75%;
+      }
 
-/* ANIMATIONS */
-.slidemenu label,
-.slider .bar {
-  transition: all 500ms ease-in-out;
-  -webkit-transition: all 500ms ease-in-out;
-  -moz-transition: all 500ms ease-in-out;
-}
+      /* ANIMATIONS */
+      .slidemenu label,
+      .slider .bar {
+        transition: all 500ms ease-in-out;
+        -webkit-transition: all 500ms ease-in-out;
+        -moz-transition: all 500ms ease-in-out;
+      }
 
-/* MENU LAYOUT */
+      /* MENU LAYOUT */
 
-.menu-options-items {
-  display: flex;
-  flex-direction: column;
-}
+      .menu-options-items {
+        display: flex;
+        flex-direction: column;
+      }
 
-.description-picture {
-  max-width: 300px;
-  max-height: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  column-gap: 2em;
-  margin: 0 20px 20px 0;
-  padding: 10px;
-}
+      .description-picture {
+        max-width: 300px;
+        max-height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: 2em;
+        margin: 0 20px 20px 0;
+        padding: 10px;
+      }
 
-.description-picture:hover,
-.description-picture:active {
-  cursor: pointer;
-  border-radius: 15px;
-  box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
-    1.5px 1.5px 2.5px rgba(94, 104, 121, 0.3);
-}
+      .description-picture:hover,
+      .description-picture:active {
+        cursor: pointer;
+        border-radius: 15px;
+        box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
+          1.5px 1.5px 2.5px rgba(94, 104, 121, 0.3);
+      }
 
-.menu-items {
-  border-bottom: gray 1px solid;
-  padding: 30px 30px 30px 0;
-}
-.coffee {
-  gap: 60px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-rows: auto;
-}
+      .menu-items {
+        border-bottom: gray 1px solid;
+        padding: 30px 30px 30px 0;
+      }
+      .coffee {
+        gap: 60px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: auto;
+      }
 
-.item-name-and-description {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
+      .item-name-and-description {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
 
-/* CART */
-.right-side-screen {
-  box-sizing: content-box;
-  padding: 30px 20px 0 30px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+      /* CART */
+      .right-side-screen {
+        box-sizing: content-box;
+        padding: 30px 20px 0 30px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
 
-.cart-info {
-  position: fixed;
-  margin-top: 50px;
-  border: 2px gray solid;
-  border-radius: 10px;
-  width: 300px;
-  min-height: 40vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-}
+      .cart-info {
+        position: fixed;
+        margin-top: 50px;
+        border: 2px gray solid;
+        border-radius: 10px;
+        width: 300px;
+        min-height: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+      }
 
-.cart-header,
-.cart-order-items {
-  padding-bottom: 20px;
-  border-bottom: 1px solid gray;
-}
-.cart-info > button {
-  border: none;
-  color: white;
-  background-color: black;
-  height: 4em;
-  border-radius: 10px;
-  margin-top: 20px;
-}
+      .cart-header,
+      .cart-order-items {
+        padding-bottom: 20px;
+        border-bottom: 1px solid gray;
+      }
+      .cart-info > button {
+        border: none;
+        color: white;
+        background-color: black;
+        height: 4em;
+        border-radius: 10px;
+        margin-top: 20px;
+      }
 
+      /*CART STYLING ON THE RIGHT */
+      .cart-order-items {
+        padding-top: 5px;
+        display: grid;
+        grid-template-columns: 40px 190px 50px;
+      }
 
-/*CART STYLING ON THE RIGHT */
-.cart-order-items {
-  padding-top: 5px;
-  display: grid;
-  grid-template-columns: 40px 190px 50px;
-  }
+      .instruction {
+        font-size: 14px;
+      }
 
-.instruction {
-  font-size: 14px;
-}
+      .instruction,
+      .item-name {
+        padding-bottom: 10px;
+      }
 
-.instruction , .item-name {
-  padding-bottom: 10px;
-}
+      .remove {
+        color: red;
+        cursor: pointer;
+      }
 
-.remove {
-  color: red;
-  cursor: pointer;
-}
+      .quantity {
+        background-color: rgb(215, 215, 215);
+        width: 20px;
+        height: 20px;
+        border-radius: 50px;
+        padding-left: 20%;
+      }
+      /* ARROW TO GO UP TO TOP OF PAGE */
+      .arrow-up {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+      }
 
-.quantity {
-  background-color: rgb(215, 215, 215) ;
-  width: 20px;
-  height: 20px;
-  border-radius: 50px;
-  padding-left: 20%;
-}
-/* ARROW TO GO UP TO TOP OF PAGE */
-.arrow-up {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 50px;
-  height: 50px;
-}
+      .checkout {
+        border-radius: 10px;
+      }
 
-.checkout {
-  border-radius: 10px;
-}
+      /* POP UP */
+      #close {
+        position: fixed;
+      }
 
+      .popup {
+        background-color: #ffffff;
+        width: 420px;
+        max-height: 650px;
+        overflow-y: scroll;
+        padding: 30px 40px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        border-radius: 8px;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        display: none;
+        position: fixed;
+        box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
+          4px 4px 5px rgba(94, 104, 121, 0.3);
+      }
 
-/* POP UP */
-#close{
-  position: fixed;
-}
+      #close_button {
+        color: inherit;
+        z-index: 1;
+        background: rgb(255, 255, 255);
+        box-shadow: rgba(8, 35, 48, 0.24) 0px 4px 8px;
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        padding: 6px;
+        top: 24px;
+        left: 24px;
+        border-radius: 50px;
+        border: none;
+        position: fixed;
+      }
 
-.popup{
-  background-color: #ffffff;
-  width: 420px;
-  max-height: 650px;
-  overflow-y: scroll;
-  padding: 30px 40px;
-  position: absolute;
-  transform: translate(-50%,-50%);
-  left: 50%;
-  top: 50%;
-  border-radius: 8px;
-  font-family: "Poppins",sans-serif;
-  text-align: center;
-  display: none;
-  position: fixed;
-  box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
-    4px 4px 5px rgba(94, 104, 121, 0.3);
-}
+      .option_titles {
+        display: flex;
+      }
 
-#close_button{
-  color: inherit;
-  z-index: 1;
-  background: rgb(255, 255, 255);
-  box-shadow: rgba(8, 35, 48, 0.24) 0px 4px 8px;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  padding: 6px;
-  top: 24px;
-  left: 24px;
-  border-radius: 50px;
-  border: none;
-  position: fixed;
-}
+      .option_boxes {
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5;
+        position: relative;
+        user-select: none;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        transition: background-color 0.25s ease 0s;
+        padding: 16px;
+        opacity: 1;
+        background-color: rgb(255, 255, 255);
+        box-shadow: rgba(8, 35, 48, 0.24) 0px 2px 4px;
+        border-radius: 4pt;
+        cursor: pointer;
+        /* border: 2px solid rgb(250, 85, 83); */
+        margin-bottom: 12px;
+      }
 
-.option_titles {
-  display: flex;
-}
+      .option_names {
+        padding-left: 10px;
+        user-select: none;
+        cursor: pointer;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5;
+        display: flex;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        width: 100%;
+      }
 
-.option_boxes {
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  position: relative;
-  user-select: none;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  transition: background-color 0.25s ease 0s;
-  padding: 16px;
-  opacity: 1;
-  background-color: rgb(255, 255, 255);
-  box-shadow: rgba(8, 35, 48, 0.24) 0px 2px 4px;
-  border-radius: 4pt;
-  cursor: pointer;
-  /* border: 2px solid rgb(250, 85, 83); */
-  margin-bottom: 12px;
-}
+      .price {
+        user-select: none;
+        cursor: pointer;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 0.875rem;
+        line-height: 1.5;
+        color: rgb(122, 125, 138);
+      }
 
-.option_names{
-  padding-left: 10px;
-  user-select: none;
-  cursor: pointer;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  width: 100%;
-}
+      #special_request {
+        width: 100%;
+        box-sizing: border-box;
+        background: rgb(245, 245, 245);
+        border: 1px solid rgb(238, 238, 238);
+        padding: 8px;
+        border-radius: 4pt;
+        margin-top: 8px;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5;
+        resize: none;
+      }
+      .bottom_panel {
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5;
+        display: flex;
+        flex-flow: row nowrap;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        padding-top: 15px;
+      }
 
-.price {
-  user-select: none;
-  cursor: pointer;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: rgb(122, 125, 138);
-}
+      .quantity_selector {
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+      }
 
-#special_request{
-  width: 100%;
-  box-sizing: border-box;
-  background: rgb(245, 245, 245);
-  border: 1px solid rgb(238, 238, 238);
-  padding: 8px;
-  border-radius: 4pt;
-  margin-top: 8px;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  resize: none;
-}
-.bottom_panel{
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  display: flex;
-  flex-flow: row nowrap;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  padding-top: 15px;
-}
+      .quantity_button {
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5;
+        background-color: rgb(238, 238, 238);
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        align-items: center;
+        border-radius: 100%;
+        height: 48px;
+        width: 48px;
+        padding: 0px;
+        cursor: pointer;
+        user-select: none;
+        border: none;
+        transition: background-color 0.25s ease 0s;
+        margin-right: 10px;
+      }
 
-.quantity_selector{
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-}
+      #quantity {
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-right: 10px;
+      }
 
-.quantity_button{
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  background-color: rgb(238, 238, 238);
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-  border-radius: 100%;
-  height: 48px;
-  width: 48px;
-  padding: 0px;
-  cursor: pointer;
-  user-select: none;
-  border: none;
-  transition: background-color 0.25s ease 0s;
-  margin-right: 10px;
-}
+      #add_cart {
+        background-color: rgb(250, 85, 83);
+        color: rgb(255, 255, 255);
+        border: none;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 1rem;
+        line-height: 1.4;
+        -webkit-box-flex: 1;
+        flex-grow: 1;
+        border-radius: 4pt;
+        margin-left: 16px;
+        margin-top: 11px;
+        padding: 0px;
+        cursor: pointer;
+        transition: background-color 0.25s ease 0s;
+      }
 
-#quantity{
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-right: 10px;
-}
+      /* CHECKOUT POP UP - ENTER IN PHONE NUMBER */
+      .checkout-container {
+        height: 100vh;
+        display: none;
+        padding: 10px 40px;
+        position: absolute;
+        left: 40%;
+        top: 10%;
+        position: fixed;
+      }
 
-#add_cart{
-  background-color: rgb(250, 85, 83);
-  color: rgb(255, 255, 255);
-  border: none;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.4;
-  -webkit-box-flex: 1;
-  flex-grow: 1;
-  border-radius: 4pt;
-  margin-left: 16px;
-  margin-top: 11px;
-  padding: 0px;
-  cursor: pointer;
-  transition: background-color 0.25s ease 0s;
-}
+      .popup-phone {
+        background-color: white;
+        width: 50vh;
+        height: 40vh;
+        position: absolute;
+        top: 5%;
+        left: 40%;
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 40px;
+        padding-top: 30px;
+        box-shadow: 5px 5px 9px rgba(255, 255, 255, 0.45),
+          1.5px 1.5px 2.5px rgba(94, 104, 121, 0.3);
+      }
+      #phone {
+        width: 338px;
+        height: 40px;
+        padding-left: 10px;
+        font-size: 16px;
+      }
+      input {
+        margin-bottom: 20px;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
 
-
+      .confirm-btn {
+        width: 338px;
+        height: 40px;
+        font-size: 18px;
+        border: none;
+        color: white;
+        background-color: black;
+        border-radius: 5px;
+      }
     </style>
   </head>
   <body>
@@ -472,7 +517,7 @@ main {
             <img
               src="/images/tag.png"
               alt="pickup or delivery"
-              style="width: 200px; height: 50px;"
+              style="width: 200px; height: 50px"
             />
             <img
               src="/images/now.png"
@@ -650,10 +695,19 @@ main {
             <p>Pick up at</p>
             <p>Ready in</p>
           </div>
-          <div class="cart-order-items">
-
-          </div>
-          <button class="checkout">Checkout <span>Subtotal:</span></button>
+          <div class="cart-order-items"></div>
+          <button
+            class="checkout"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding-left: 20px;
+              padding-right: 20px;
+            "
+          >
+            Checkout <span>Subtotal: $0</span>
+          </button>
         </div>
       </div>
       <div class="arrow-up">
@@ -670,8 +724,10 @@ main {
         <button id="close_button" c>&times;</button>
       </div>
       <div class="description">
-        <img alt="Latte"
-          src="https://lh3.googleusercontent.com/2Uk92AII_rYGIioGlaIn7K9YQ-S01nVs05gbHZRwTapw11OUJfe14_0c8od9REiy4pJ0TAq-2Nf4zKZwED8WgzQXBOl5=c-w256">
+        <img
+          alt="Latte"
+          src="https://lh3.googleusercontent.com/2Uk92AII_rYGIioGlaIn7K9YQ-S01nVs05gbHZRwTapw11OUJfe14_0c8od9REiy4pJ0TAq-2Nf4zKZwED8WgzQXBOl5=c-w256"
+        />
         <h2 id="item_name">Latte</h2>
         <p>Silky Smooth streamed milk poured over shots of espresso.</p>
       </div>
@@ -681,7 +737,7 @@ main {
             <h3>Size</h3>
           </div>
           <div class="option_boxes">
-            <input type="radio" id="size_s" name="size" value="s">
+            <input type="radio" id="size_s" name="size" value="s" />
             <div class="option_names">
               <div>
                 <label for="size_s">Small (8oz)</label>
@@ -690,7 +746,7 @@ main {
             </div>
           </div>
           <div class="option_boxes">
-            <input type="radio" id="size_m" name="size" value="m">
+            <input type="radio" id="size_m" name="size" value="m" />
             <div class="option_names">
               <div>
                 <label for="size_m">Medium (12oz)</label>
@@ -699,7 +755,7 @@ main {
             </div>
           </div>
           <div class="option_boxes">
-            <input type="radio" id="size_l" name="size" value="l">
+            <input type="radio" id="size_l" name="size" value="l" />
             <div class="option_names">
               <div>
                 <label for="size_l">Large (16oz)</label>
@@ -714,7 +770,12 @@ main {
             <h3>Espresso Option</h3>
           </div>
           <div class="option_boxes">
-            <input type="checkbox" id="decaf" name="espresso_option" value="decaf">
+            <input
+              type="checkbox"
+              id="decaf"
+              name="espresso_option"
+              value="decaf"
+            />
             <div class="option_names">
               <div>
                 <label for="decaf">Make it Decaf</label>
@@ -722,7 +783,12 @@ main {
             </div>
           </div>
           <div class="option_boxes">
-            <input type="checkbox" id="extra_shot" name="espresso_option" value="extra_shot">
+            <input
+              type="checkbox"
+              id="extra_shot"
+              name="espresso_option"
+              value="extra_shot"
+            />
             <div class="option_names">
               <div>
                 <label for="extra_shot">Extra Espresso Shot</label>
@@ -737,7 +803,12 @@ main {
             <h3>Milk</h3>
           </div>
           <div class="option_boxes">
-            <input type="radio" id="whole_milk" name="milk" value="whole_milk">
+            <input
+              type="radio"
+              id="whole_milk"
+              name="milk"
+              value="whole_milk"
+            />
             <div class="option_names">
               <div>
                 <label for="whole_milk">Whole Milk</label>
@@ -745,7 +816,7 @@ main {
             </div>
           </div>
           <div class="option_boxes">
-            <input type="radio" id="skim_milk" name="milk" value="skim_milk">
+            <input type="radio" id="skim_milk" name="milk" value="skim_milk" />
             <div class="option_names">
               <div>
                 <label for="skim_milk">Skim Milk</label>
@@ -753,7 +824,12 @@ main {
             </div>
           </div>
           <div class="option_boxes">
-            <input type="radio" id="almond_milk" name="milk" value="almond_milk">
+            <input
+              type="radio"
+              id="almond_milk"
+              name="milk"
+              value="almond_milk"
+            />
             <div class="option_names">
               <div>
                 <label for="almond_milk">Almond Milk</label>
@@ -762,7 +838,7 @@ main {
             </div>
           </div>
           <div class="option_boxes">
-            <input type="radio" id="soy_milk" name="milk" value="soy_milk">
+            <input type="radio" id="soy_milk" name="milk" value="soy_milk" />
             <div class="option_names">
               <div>
                 <label for="soy_milk">Soy Milk</label>
@@ -771,7 +847,7 @@ main {
             </div>
           </div>
           <div class="option_boxes">
-            <input type="radio" id="oat_milk" name="milk" value="oat_milk">
+            <input type="radio" id="oat_milk" name="milk" value="oat_milk" />
             <div class="option_names">
               <div>
                 <label for="oat_milk">Oat Milk</label>
@@ -796,5 +872,31 @@ main {
         </div>
       </form>
     </div>
+
+    <!-- CHECKOUT DIV -->
+    <main class="checkout-container">
+      <div class="popup-phone">
+        <h2>Enter your mobile number</h2>
+        <p style="padding-top: 20px; font-size: 14px">
+          Your mobile phone number is your login - it’s also how we alert you
+          when your food is ready
+        </p>
+        <br />
+        <label for="phone" style="font-size: 10px"
+          >Phone Number (your mobile phone number is your login)</label
+        ><br />
+
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          placeholder="(123) 456-7890"
+          required
+        />
+        <br />
+        <button class="confirm-btn">Confirm order</button>
+      </div>
+    </main>
   </body>
 </html>
