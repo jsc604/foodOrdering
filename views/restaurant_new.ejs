@@ -80,7 +80,7 @@
               </td>
             <% } else { %>
               <td>
-                <button type="submit" class="btn start-order btn-warning disabled" style="color: black; border: 1px solid #dc3545;"><%= ordersObject[order].start_time %></button>
+                <button type="submit" class="btn start-order btn-warning disabled" style="color: black; border: 1px solid #dc3545;"><%= `ORDER STARTED ON: ${ordersObject[order].start_time}` %></button>
               </td>
               <td>
                 <form method="POST" action="/orders/complete-order" id="completeForm">

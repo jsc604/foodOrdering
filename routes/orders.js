@@ -23,7 +23,6 @@ router.get('/new', (req, res) => {
       }
 
       const templateVars = { ordersObject };
-      console.log(templateVars);
       res.render('restaurant_new', templateVars);
       return;
     });
@@ -41,14 +40,14 @@ router.get('/complete', (req, res) => {
             id: order.order_id,
             name: order.customer_name,
             items: [`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`],
-            completed_at: order.completed_at
+            completed_at: order.completed_at,
+            picked_up: order.picked_up
           };
         } else {
           ordersObject[order.order_id].items.push(`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`);
         }
       }
 
-      console.log('----', completedOrders);
       const templateVars = { ordersObject };
       res.render('restaurant_completed', templateVars);
       return;
@@ -63,12 +62,10 @@ router.post('/start-order', (req, res) => {
       console.log('......order recorded.......');
       return;
     });
-
 });
 
 //POST COMPLETE ORDER
 router.post('/complete-order', (req, res) => {
-  console.log(req.body.complete_order);
   const customerId = req.body.complete_order;
   userQueries.completeOrder(customerId)
     .then(data => {
@@ -79,7 +76,12 @@ router.post('/complete-order', (req, res) => {
 
 // POST PICKUP ORDER
 router.post('/complete', (req, res) => {
-  console.log(req.body);
+  const customerId = req.body.status;
+  userQueries.pickUpOrder(customerId)
+    .then(data => {
+      console.log('......order picked up.......');
+      return;
+    });
 });
 
 module.exports = router;

@@ -3,8 +3,8 @@ $(() => {
 
   // PICK UP BUTTON
   $('button.pick-up').click(function() {
+
     $(this).html('<i class="fa fa-check"></i>');
-    $(this).prop('disabled', true);
     $(this).closest('tr').css({
       'opacity': '0.8',
       'background-color': 'lightgreen'
@@ -16,7 +16,7 @@ $(() => {
     event.preventDefault();
 
     const currentDateTime = new Date().toString();
-    $(this).text(currentDateTime);
+    $(this).text(`ORDER STARTED ON: ${currentDateTime}`);
 
     $(this).closest('tr').find('.btn-success').removeClass('disabled');
 
