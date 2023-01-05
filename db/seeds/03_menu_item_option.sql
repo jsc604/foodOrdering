@@ -57,9 +57,9 @@ INSERT INTO menu_item_options (option_category, name, price, menu_item_id) VALUE
 INSERT INTO menu_item_options (option_category, name, price, menu_item_id) VALUES ('Milk', 'Oat Milk', 1, 9);
 
 
-INSERT INTO menu_item_options (option_category, name, price, menu_item_id) VALUES ('Size', 'small', 5, 10);
-INSERT INTO menu_item_options (option_category, name, price, menu_item_id) VALUES ('Size', 'medium', 5.99, 10);
-INSERT INTO menu_item_options (option_category, name, price, menu_item_id) VALUES ('Size', 'large', 6.99, 10);
+-- INSERT INTO menu_item_options (option_category, name, price, menu_item_id) VALUES ('Size', 'small', 5, 10);
+-- INSERT INTO menu_item_options (option_category, name, price, menu_item_id) VALUES ('Size', 'medium', 5.99, 10);
+-- INSERT INTO menu_item_options (option_category, name, price, menu_item_id) VALUES ('Size', 'large', 6.99, 10);
 INSERT INTO menu_item_options (option_category, name, price, menu_item_id) VALUES ('Milk', 'Whole Milk', 0, 10);
 INSERT INTO menu_item_options (option_category, name, price, menu_item_id) VALUES ('Milk', 'Skim Milk', 0, 10);
 INSERT INTO menu_item_options (option_category, name, price, menu_item_id) VALUES ('Milk', 'Almond Milk', 1, 10);
