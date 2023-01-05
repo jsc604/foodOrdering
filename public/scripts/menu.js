@@ -6,10 +6,10 @@ $(document).ready(function () {
 
   $(".checkout").click(function () {
     $(".checkout-container").show();
-    $('.container').css({
-      "color" : "gray",
-      "opacity" : "0.3"
-    })
+    $(".container").css({
+      color: "gray",
+      opacity: "0.3",
+    });
   });
 
   //CLOSE
@@ -32,10 +32,10 @@ $(document).ready(function () {
     if (!container.is(e.target) && container.has(e.target).length === 0) {
       container.hide();
     }
-    $('.container').css({
-      "opacity": "1",
-      "color": "black"
-    })
+    $(".container").css({
+      opacity: "1",
+      color: "black",
+    });
   });
 
   // WHEN CLICK REDIRECT TO MATCHING SECTIONS
@@ -53,27 +53,24 @@ $(document).ready(function () {
   });
 
   //REMOVE ITEM FROM CART
-  $(document).on("click", ".remove-opt", function () {
+  $(".cart-order-items").on("click", ".remove", function () {
     $(this).parent().remove();
-    $(".price").remove();
-    $(".quantity").remove();
+
   });
-  //
-  // $(function () {
-  //   const $orders = $('.cart-order-items');
 
-  //   $.ajax({
-  //     type: "GET",
-  //     // URL TO DATABASE
-  //     url: "#",
-  //     success: function (data) {
-  //       //test with console.log('success', data) to see objects
-  //       $.each(orders, function (i, order) {
-  //          $orders.append(``)
-  //       });
-  //     },
-  //   });
-  // });
-
-  //CART ITEM COUNT
+  //UPDATE CART TOTAL
+  function update_amounts() {
+    let sum = 0.0;
+    $(".quantity").each(function () {
+      let quantity = $(this).find("#quantity").val();
+      console.log(quantity, "test");
+      let price = $(this).find(".price").val();
+      let amount = quantity * price;
+      sum += amount;
+      $(this)
+        .find(".subtotal")
+        .text("" + amount);
+    });
+    $("subtotal").text(sum);
+  }
 });

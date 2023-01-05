@@ -43,20 +43,22 @@ $(document).ready(function () {
         console.log(instruction);
         const cart = $('.cart-order-items');
         cart.append(`
-          <div class="quantity"><h4>${data.quantity}</h4></div>
-
-          <div class="item-description">
-
-          <div class="item-info">
-            <h4 class="item-name">${data.name}</h4>
-            <p class="instruction">${instruction}</p>
+        <div class="cart-order-item">
+          <div class="quantity">
+            <h4>${data.quantity}</h4>
           </div>
-            <div class="remove-opt">
-              <span class="remove">Remove</span>
+          <div class="item-description">
+            <div class="item-info">
+              <h4 class="item-name">${data.name}</h4>
+              <p class="instruction">${instruction}</p>
             </div>
+
           </div>
 
           <div class="price"><h4>$${data.price}</h4></div>
+
+          <span class="remove-up remove">Remove</span>
+        </div>
       `)
       });
 
@@ -77,7 +79,7 @@ $(document).ready(function () {
 
 
     // Calculate total price when item added
-      
+
 
 
 
