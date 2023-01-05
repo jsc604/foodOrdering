@@ -1,905 +1,849 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu</title>
-    <link rel="stylesheet" href="/foodOrdering/public/styles/menu.css" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu</title>
+  <link rel="stylesheet" href="/foodOrdering/public/styles/menu.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap"
-      rel="stylesheet"
-    />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script defer src="/scripts/quantity_selector.js"></script>
-    <script defer src="/scripts/add_to_cart.js"></script>
-    <script defer src="/scripts/limit_checkbox.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet" />
 
-    <script defer src="/scripts/menu.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script defer src="/scripts/quantity_selector.js"></script>
+  <script defer src="/scripts/add_to_cart.js"></script>
+  <script defer src="/scripts/limit_checkbox.js"></script>
 
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+  <script defer src="/scripts/menu.js"></script>
 
-      body {
-        font-family: "Poppins", sans-serif;
-      }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      main {
-        display: flex;
-        column-gap: 4em;
-        margin-left: auto;
-        margin-right: auto;
-        display: flex;
-      }
+    body {
+      font-family: "Poppins", sans-serif;
+    }
 
-      /* LEFT SIDE OF SCREEN INCLUDES INFO + MENU*/
-      .left-side-screen {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 30px 20px 0 30px;
-        flex: 2;
-      }
+    main {
+      display: flex;
+      column-gap: 4em;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+    }
 
-      /* ABOVE MENU - LOGO/DESCR/ICONS */
-      .above-menu-descriptions {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
+    /* LEFT SIDE OF SCREEN INCLUDES INFO + MENU*/
+    .left-side-screen {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px 0 30px;
+      flex: 2;
+    }
 
-      .above-menu-descriptions > .items {
-        padding-bottom: 20px;
-      }
+    /* ABOVE MENU - LOGO/DESCR/ICONS */
+    .above-menu-descriptions {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-      .pickup-delivery-options {
-        flex-direction: flex;
-        justify-content: space-between;
-      }
+    .above-menu-descriptions>.items {
+      padding-bottom: 20px;
+    }
 
-      /* MENU CATEGORIES - SLIDER */
-      .clear {
-        clear: both;
-      }
+    .pickup-delivery-options {
+      flex-direction: flex;
+      justify-content: space-between;
+    }
 
-      .slide-toggle {
-        display: none;
-      }
+    /* MENU CATEGORIES - SLIDER */
+    .clear {
+      clear: both;
+    }
 
-      .slidemenu {
-        max-width: 600px;
-        margin: 50px auto;
-        overflow: hidden;
-      }
+    .slide-toggle {
+      display: none;
+    }
 
-      .slidemenu label {
-        /* width: 25%; */
-        text-align: center;
-        display: block;
-        float: left;
-        color: black;
-        opacity: 0.2;
-      }
+    .slidemenu {
+      max-width: 600px;
+      margin: 50px auto;
+      overflow: hidden;
+    }
 
-      .slidemenu label:hover {
-        cursor: pointer;
-        color: gray;
-      }
+    .slidemenu label {
+      /* width: 25%; */
+      text-align: center;
+      display: block;
+      float: left;
+      color: black;
+      opacity: 0.2;
+    }
 
-      .slidemenu label span {
-        display: block;
-        padding: 10px;
-      }
+    .slidemenu label:hover {
+      cursor: pointer;
+      color: gray;
+    }
 
-      /* BAR */
-      .slider {
-        width: 100%;
-        height: 2px;
-        display: block;
-        background-color: rgb(211, 211, 211);
-        margin-top: 10px;
-        border-radius: 5px;
-      }
+    .slidemenu label span {
+      display: block;
+      padding: 10px;
+    }
 
-      .slider .bar {
-        width: 25%;
-        height: 5px;
-        background: black;
-        border-radius: 2px;
-      }
-      .slidemenu .slide-toggle:checked + label {
-        opacity: 1;
-      }
+    /* BAR */
+    .slider {
+      width: 100%;
+      height: 2px;
+      display: block;
+      background-color: rgb(211, 211, 211);
+      margin-top: 10px;
+      border-radius: 5px;
+    }
 
-      .slidemenu #slide-item-1:checked ~ .slider .bar {
-        margin-left: 0;
-      }
-      .slidemenu #slide-item-2:checked ~ .slider .bar {
-        margin-left: 25%;
-      }
-      .slidemenu #slide-item-3:checked ~ .slider .bar {
-        margin-left: 50%;
-      }
-      .slidemenu #slide-item-4:checked ~ .slider .bar {
-        margin-left: 75%;
-      }
+    .slider .bar {
+      width: 25%;
+      height: 5px;
+      background: black;
+      border-radius: 2px;
+    }
 
-      /* ANIMATIONS */
-      .slidemenu label,
-      .slider .bar {
-        transition: all 500ms ease-in-out;
-        -webkit-transition: all 500ms ease-in-out;
-        -moz-transition: all 500ms ease-in-out;
-      }
+    .slidemenu .slide-toggle:checked+label {
+      opacity: 1;
+    }
 
-      /* MENU LAYOUT */
+    .slidemenu #slide-item-1:checked~.slider .bar {
+      margin-left: 0;
+    }
 
-      .menu-options-items {
-        display: flex;
-        flex-direction: column;
-      }
+    .slidemenu #slide-item-2:checked~.slider .bar {
+      margin-left: 25%;
+    }
 
-      .description-picture {
-        max-width: 300px;
-        max-height: 400px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        column-gap: 2em;
-        margin: 0 20px 20px 0;
-        padding: 10px;
-      }
+    .slidemenu #slide-item-3:checked~.slider .bar {
+      margin-left: 50%;
+    }
 
-      .description-picture:hover,
-      .description-picture:active {
-        cursor: pointer;
-        border-radius: 15px;
-        box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
-          1.5px 1.5px 2.5px rgba(94, 104, 121, 0.3);
-      }
+    .slidemenu #slide-item-4:checked~.slider .bar {
+      margin-left: 75%;
+    }
 
-      .menu-items {
-        border-bottom: gray 1px solid;
-        padding: 30px 30px 30px 0;
-      }
-      .coffee {
-        gap: 60px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: auto;
-      }
+    /* ANIMATIONS */
+    .slidemenu label,
+    .slider .bar {
+      transition: all 500ms ease-in-out;
+      -webkit-transition: all 500ms ease-in-out;
+      -moz-transition: all 500ms ease-in-out;
+    }
 
-      .item-name-and-description {
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
+    /* MENU LAYOUT */
 
-      /* CART */
-      .right-side-screen {
-        box-sizing: content-box;
-        padding: 30px 20px 0 30px;
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
+    .menu-options-items {
+      display: flex;
+      flex-direction: column;
+    }
 
-      .cart-info {
-        position: fixed;
-        margin-top: 50px;
-        border: 2px gray solid;
-        border-radius: 10px;
-        width: 300px;
-        min-height: 40vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 20px;
-      }
+    .description-picture {
+      max-width: 300px;
+      max-height: 400px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 2em;
+      margin: 0 20px 20px 0;
+      padding: 10px;
+    }
 
-      .cart-header,
-      .cart-order-items {
-        padding-bottom: 20px;
-        border-bottom: 1px solid gray;
-      }
-      .cart-info > button {
-        border: none;
-        color: white;
-        background-color: black;
-        height: 4em;
-        border-radius: 10px;
-        margin-top: 20px;
-      }
+    .description-picture:hover,
+    .description-picture:active {
+      cursor: pointer;
+      border-radius: 15px;
+      box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
+        1.5px 1.5px 2.5px rgba(94, 104, 121, 0.3);
+    }
 
-      /*CART STYLING ON THE RIGHT */
-      .cart-order-item {
-        padding-top: 5px;
-        display: grid;
-        grid-template-columns: 40px 190px 50px;
-        padding-bottom: 20px;
-      }
+    .menu-items {
+      border-bottom: gray 1px solid;
+      padding: 30px 30px 30px 0;
+    }
 
-      .instruction {
-        font-size: 14px;
-      }
+    .coffee {
+      gap: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: auto;
+    }
+    
 
-      .instruction,
-      .item-name {
-        padding-bottom: 10px;
-      }
+    .bakery {
+      gap: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: auto;
+    }
 
-      .remove {
-        color: red;
-        cursor: pointer;
-        position: relative;
-        font-size: 12px;
-      }
+    .miscellaneous {
+      gap: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: auto;
+    }
 
-      .quantity {
-        background-color: rgb(215, 215, 215);
-        width: 20px;
-        height: 20px;
-        border-radius: 50px;
-        padding-left: 20%;
-      }
-      /* ARROW TO GO UP TO TOP OF PAGE */
-      .arrow-up {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-      }
+    .category-header {
+      padding-top: 15px;
+    }
 
-      .checkout {
-        border-radius: 10px;
-      }
+    .item-name-and-description {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
 
-      /* POP UP */
-      #close {
-        position: fixed;
-      }
+    /* CART */
+    .right-side-screen {
+      box-sizing: content-box;
+      padding: 30px 20px 0 30px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-      .popup {
-        background-color: #ffffff;
-        width: 420px;
-        max-height: 650px;
-        overflow-y: scroll;
-        padding: 30px 40px;
-        position: absolute;
-        transform: translate(-50%, -50%);
-        left: 50%;
-        top: 50%;
-        border-radius: 8px;
-        font-family: "Poppins", sans-serif;
-        text-align: center;
-        display: none;
-        position: fixed;
-        box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
-          4px 4px 5px rgba(94, 104, 121, 0.3);
-      }
+    .cart-info {
+      position: fixed;
+      margin-top: 50px;
+      border: 2px gray solid;
+      border-radius: 10px;
+      width: 300px;
+      min-height: 40vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+    }
 
-      #close_button {
-        color: inherit;
-        z-index: 1;
-        background: rgb(255, 255, 255);
-        box-shadow: rgba(8, 35, 48, 0.24) 0px 4px 8px;
-        display: flex;
-        -webkit-box-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        align-items: center;
-        padding: 6px;
-        top: 24px;
-        left: 24px;
-        border-radius: 50px;
-        border: none;
-        position: fixed;
-      }
+    .cart-header,
+    .cart-order-items {
+      padding-bottom: 20px;
+      border-bottom: 1px solid gray;
+    }
 
-      .option_titles {
-        display: flex;
-      }
+    .cart-info>button {
+      border: none;
+      color: white;
+      background-color: black;
+      height: 4em;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
 
-      .option_boxes {
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-weight: 400;
-        font-size: 1rem;
-        line-height: 1.5;
-        position: relative;
-        user-select: none;
-        display: flex;
-        -webkit-box-align: center;
-        align-items: center;
-        transition: background-color 0.25s ease 0s;
-        padding: 16px;
-        opacity: 1;
-        background-color: rgb(255, 255, 255);
-        box-shadow: rgba(8, 35, 48, 0.24) 0px 2px 4px;
-        border-radius: 4pt;
-        cursor: pointer;
-        /* border: 2px solid rgb(250, 85, 83); */
-        margin-bottom: 12px;
-      }
+    /*CART STYLING ON THE RIGHT */
+    .cart-order-item {
+      padding-top: 5px;
+      display: grid;
+      grid-template-columns: 40px 190px 50px;
+      padding-bottom: 20px;
+    }
 
-      .option_names {
-        padding-left: 10px;
-        user-select: none;
-        cursor: pointer;
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-weight: 400;
-        font-size: 1rem;
-        line-height: 1.5;
-        display: flex;
-        -webkit-box-pack: justify;
-        justify-content: space-between;
-        width: 100%;
-      }
+    .instruction {
+      font-size: 14px;
+    }
 
-      .price {
-        user-select: none;
-        cursor: pointer;
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-weight: 400;
-        font-size: 0.875rem;
-        line-height: 1.5;
-        color: rgb(122, 125, 138);
-      }
+    .instruction,
+    .item-name {
+      padding-bottom: 10px;
+    }
 
-      #special_request {
-        width: 100%;
-        box-sizing: border-box;
-        background: rgb(245, 245, 245);
-        border: 1px solid rgb(238, 238, 238);
-        padding: 8px;
-        border-radius: 4pt;
-        margin-top: 8px;
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-weight: 400;
-        font-size: 1rem;
-        line-height: 1.5;
-        resize: none;
-      }
-      .bottom_panel {
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-weight: 400;
-        font-size: 1rem;
-        line-height: 1.5;
-        display: flex;
-        flex-flow: row nowrap;
-        -webkit-box-pack: justify;
-        justify-content: space-between;
-        padding-top: 15px;
-      }
+    .remove {
+      color: red;
+      cursor: pointer;
+      position: relative;
+      font-size: 12px;
+    }
 
-      .quantity_selector {
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-weight: 400;
-        font-size: 1rem;
-        line-height: 1.5;
-        display: flex;
-        -webkit-box-align: center;
-        align-items: center;
-      }
+    .quantity {
+      background-color: rgb(215, 215, 215);
+      width: 20px;
+      height: 20px;
+      border-radius: 50px;
+      padding-left: 20%;
+    }
 
-      .quantity_button {
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-weight: 400;
-        font-size: 1rem;
-        line-height: 1.5;
-        background-color: rgb(238, 238, 238);
-        display: flex;
-        -webkit-box-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        align-items: center;
-        border-radius: 100%;
-        height: 48px;
-        width: 48px;
-        padding: 0px;
-        cursor: pointer;
-        user-select: none;
-        border: none;
-        transition: background-color 0.25s ease 0s;
-        margin-right: 10px;
-      }
+    /* ARROW TO GO UP TO TOP OF PAGE */
+    .arrow-up {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+    }
 
-      #quantity {
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-weight: 400;
-        font-size: 1rem;
-        line-height: 1.5;
-        margin-right: 10px;
-      }
+    .checkout {
+      border-radius: 10px;
+    }
 
-      #add_cart {
-        background-color: rgb(250, 85, 83);
-        color: rgb(255, 255, 255);
-        border: none;
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        font-weight: 400;
-        font-size: 1rem;
-        line-height: 1.4;
-        -webkit-box-flex: 1;
-        flex-grow: 1;
-        border-radius: 4pt;
-        margin-left: 16px;
-        margin-top: 11px;
-        padding: 0px;
-        cursor: pointer;
-        transition: background-color 0.25s ease 0s;
-      }
+    /* POP UP */
+    #close {
+      position: fixed;
+    }
 
-      /* CHECKOUT POP UP - ENTER IN PHONE NUMBER */
-      .checkout-container {
-        height: 100vh;
-        display: none;
-        padding: 10px 40px;
-        position: absolute;
-        left: 40%;
-        top: 10%;
-        position: fixed;
-      }
+    .popup {
+      background-color: #ffffff;
+      width: 420px;
+      max-height: 650px;
+      overflow-y: scroll;
+      padding: 30px 40px;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+      border-radius: 8px;
+      font-family: "Poppins", sans-serif;
+      text-align: center;
+      display: none;
+      position: fixed;
+      box-shadow: -5px -5px 9px rgba(255, 255, 255, 0.45),
+        4px 4px 5px rgba(94, 104, 121, 0.3);
+    }
 
-      .popup-phone {
-        background-color: white;
-        width: 50vh;
-        height: 40vh;
-        position: absolute;
-        top: 5%;
-        left: 40%;
-        display: block;
-        flex-direction: column;
-        align-items: center;
-        padding-left: 40px;
-        padding-top: 30px;
-        box-shadow: 5px 5px 9px rgba(255, 255, 255, 0.45),
-          1.5px 1.5px 2.5px rgba(94, 104, 121, 0.3);
-      }
-      #phone {
-        width: 338px;
-        height: 40px;
-        padding-left: 10px;
-        font-size: 16px;
-      }
-      input {
-        margin-bottom: 20px;
-        margin-top: 10px;
-        border-radius: 5px;
-      }
+    #close_button {
+      color: inherit;
+      z-index: 1;
+      background: rgb(255, 255, 255);
+      box-shadow: rgba(8, 35, 48, 0.24) 0px 4px 8px;
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      align-items: center;
+      padding: 6px;
+      top: 24px;
+      left: 24px;
+      border-radius: 50px;
+      border: none;
+      position: fixed;
+    }
 
-      .confirm-btn {
-        width: 338px;
-        height: 40px;
-        font-size: 18px;
-        border: none;
-        color: white;
-        background-color: black;
-        border-radius: 5px;
-      }
-    </style>
-  </head>
-  <body>
-    <main class="container">
-      <!-- LEFT SIDE - CONTAINS MENU-->
-      <div class="left-side-screen">
-        <div class="above-menu-descriptions">
-          <!-- LOGO  -->
-          <div class="logo items" id="logo">
-            <a href="#"
-              ><img
-                src="/images/cup.png"
-                alt="logo"
-                style="width: 70px; height: 40px"
-            /></a>
-          </div>
+    .option_titles {
+      display: flex;
+    }
 
-          <p class="items">Coffee • Baked Goods</p>
+    .option_boxes {
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      position: relative;
+      user-select: none;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      transition: background-color 0.25s ease 0s;
+      padding: 16px;
+      opacity: 1;
+      background-color: rgb(255, 255, 255);
+      box-shadow: rgba(8, 35, 48, 0.24) 0px 2px 4px;
+      border-radius: 4pt;
+      cursor: pointer;
+      /* border: 2px solid rgb(250, 85, 83); */
+      margin-bottom: 12px;
+    }
 
-          <p class="items">Open 10:00 AM - 5:00PM <a href="#">More Info</a></p>
+    .option_names {
+      padding-left: 10px;
+      user-select: none;
+      cursor: pointer;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      display: flex;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      width: 100%;
+    }
 
-          <div class="pickup-delivery-options items">
-            <img
-              src="/images/tag.png"
-              alt="pickup or delivery"
-              style="width: 200px; height: 50px"
-            />
-            <img
-              src="/images/now.png"
-              alt="now"
-              style="width: 100px; height: 50px"
-            />
-          </div>
+    .price {
+      user-select: none;
+      cursor: pointer;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: rgb(122, 125, 138);
+    }
+
+    #special_request {
+      width: 100%;
+      box-sizing: border-box;
+      background: rgb(245, 245, 245);
+      border: 1px solid rgb(238, 238, 238);
+      padding: 8px;
+      border-radius: 4pt;
+      margin-top: 8px;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      resize: none;
+    }
+
+    .bottom_panel {
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      display: flex;
+      flex-flow: row nowrap;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      padding-top: 15px;
+    }
+
+    .quantity_selector {
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+    }
+
+    .quantity_button {
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      background-color: rgb(238, 238, 238);
+      display: flex;
+      -webkit-box-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      align-items: center;
+      border-radius: 100%;
+      height: 48px;
+      width: 48px;
+      padding: 0px;
+      cursor: pointer;
+      user-select: none;
+      border: none;
+      transition: background-color 0.25s ease 0s;
+      margin-right: 10px;
+    }
+
+    #quantity {
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-right: 10px;
+    }
+
+    #add_cart {
+      background-color: rgb(250, 85, 83);
+      color: rgb(255, 255, 255);
+      border: none;
+      font-family: Roboto, Helvetica, Arial, sans-serif;
+      font-weight: 400;
+      font-size: 1rem;
+      line-height: 1.4;
+      -webkit-box-flex: 1;
+      flex-grow: 1;
+      border-radius: 4pt;
+      margin-left: 16px;
+      margin-top: 11px;
+      padding: 0px;
+      cursor: pointer;
+      transition: background-color 0.25s ease 0s;
+    }
+
+    /* CHECKOUT POP UP - ENTER IN PHONE NUMBER */
+    .checkout-container {
+      height: 100vh;
+      display: none;
+      padding: 10px 40px;
+      position: absolute;
+      left: 40%;
+      top: 10%;
+      position: fixed;
+    }
+
+    .popup-phone {
+      background-color: white;
+      width: 50vh;
+      height: 40vh;
+      position: absolute;
+      top: 5%;
+      left: 40%;
+      display: block;
+      flex-direction: column;
+      align-items: center;
+      padding-left: 40px;
+      padding-top: 30px;
+      box-shadow: 5px 5px 9px rgba(255, 255, 255, 0.45),
+        1.5px 1.5px 2.5px rgba(94, 104, 121, 0.3);
+    }
+
+    #phone {
+      width: 338px;
+      height: 40px;
+      padding-left: 10px;
+      font-size: 16px;
+    }
+
+    input {
+      margin-bottom: 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    .confirm-btn {
+      width: 338px;
+      height: 40px;
+      font-size: 18px;
+      border: none;
+      color: white;
+      background-color: black;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+    <!-- LEFT SIDE - CONTAINS MENU-->
+    <div class="left-side-screen">
+      <div class="above-menu-descriptions">
+        <!-- LOGO  -->
+        <div class="logo items" id="logo">
+          <a href="#"><img src="/images/cup.png" alt="logo" style="width: 70px; height: 40px" /></a>
         </div>
 
-        <!-- MENU - OPTIONS - CATEGORIES -->
+        <p class="items">Coffee • Baked Goods</p>
 
-        <nav class="slidemenu">
-          <!-- Item 1 -->
-          <input
-            type="radio"
-            name="slideItem"
-            id="slide-item-1"
-            class="slide-toggle"
-            checked
-          />
-          <label for="slide-item-1"
-            ><span id="mostpopular-span">Most Popular</span></label
-          >
+        <p class="items">Open 10:00 AM - 5:00PM <a href="#">More Info</a></p>
 
-          <!-- Item 2 -->
-          <input
-            type="radio"
-            name="slideItem"
-            id="slide-item-2"
-            class="slide-toggle"
-            checked
-          />
-          <label for="slide-item-2"><span id="coffee-span">Coffee</span></label>
-
-          <!-- Item 3 -->
-          <input
-            type="radio"
-            name="slideItem"
-            id="slide-item-3"
-            class="slide-toggle"
-            checked
-          />
-          <label for="slide-item-3"><span id="bakery-span">Bakery</span></label>
-
-          <!-- Item 4 -->
-          <input
-            type="radio"
-            name="slideItem"
-            id="slide-item-4"
-            class="slide-toggle"
-            checked
-          />
-          <label for="slide-item-4"
-            ><span id="miscellaneous-span">Miscellaneous</span></label
-          >
-
-          <div class="clear"></div>
-
-          <!-- BAR -->
-          <div class="slider">
-            <div class="bar"></div>
-          </div>
-        </nav>
-
-        <!-- MENU -->
-        <div class="menu-options-items">
-          <!-- MOST POPULAR -->
-          <div class="menu-items" id="most-popular">
-            <h2>Most Popular</h2>
-            <div class="description-picture">
-              <div class="item-name-and-description">
-                <h4 id="item-name">Latte</h4>
-                <br />
-                <p id="item-description">
-                  Silky smooth steamed milk poured over shots of espresso.
-                </p>
-                <br />
-                <h4 id="item-price">$4.50</h4>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1568046562322-0bbc869368ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
-                alt="hot latte"
-                style="width: 250px; height: 90px; border-radius: 20px"
-              />
-            </div>
-          </div>
-
-          <!-- COFFEE - ITEMS-->
-          <h2>Coffee</h2>
-          <div class="coffee menu-items" id="coffee">
-            <div class="description-picture">
-              <div class="item-name-and-description">
-                <h4 id="item-name">Latte</h4>
-                <br />
-                <p id="item-description">
-                  Silky smooth steamed milk poured over shots of espresso.
-                </p>
-                <br />
-                <h4 id="item-price">$4.50</h4>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1568046562322-0bbc869368ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
-                alt="hot latte"
-                style="width: 250px; height: 100px; border-radius: 20px"
-              />
-            </div>
-
-            <div class="description-picture">
-              <div class="item-name-and-description">
-                <h4 id="item-name">Latte</h4>
-                <br />
-                <p id="item-description">
-                  Silky smooth steamed milk poured over shots of espresso.
-                </p>
-                <br />
-                <h4 id="item-price">$4.50</h4>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1568046562322-0bbc869368ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
-                alt="hot latte"
-                style="width: 250px; height: 100px; border-radius: 20px"
-              />
-            </div>
-          </div>
-
-          <!-- BAKERY -->
-          <div class="bakery menu-items" id="bakery">
-            <h2>Bakery</h2>
-            <div class="description-picture">
-              <div class="item-name-and-description">
-                <h4 id="item-name">Latte</h4>
-                <br />
-                <p id="item-description">
-                  Silky smooth steamed milk poured over shots of espresso.
-                </p>
-                <br />
-                <h4 id="item-price">$4.50</h4>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1568046562322-0bbc869368ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
-                alt="hot latte"
-                style="width: 250px; height: 100px; border-radius: 20px"
-              />
-            </div>
-          </div>
-
-          <!-- Miscellaneous -->
-          <div class="miscellaneous menu-items" id="miscellaneous">
-            <h2>Miscellaneous</h2>
-            <div class="description-picture">
-              <div class="item-name-and-description">
-                <h4 id="item-name">Latte</h4>
-                <br />
-                <p id="item-description">
-                  Silky smooth steamed milk poured over shots of espresso.
-                </p>
-                <br />
-                <h4 id="item-price">$4.50</h4>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1568046562322-0bbc869368ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
-                alt="hot latte"
-                style="width: 250px; height: 100px; border-radius: 20px"
-              />
-            </div>
-          </div>
+        <div class="pickup-delivery-options items">
+          <img src="/images/tag.png" alt="pickup or delivery" style="width: 200px; height: 50px" />
+          <img src="/images/now.png" alt="now" style="width: 100px; height: 50px" />
         </div>
       </div>
 
-      <!-- RIGHT SIDE - CONTAINS CART/CHECKOUT -->
-      <div class="right-side-screen">
-        <div class="cart-info">
-          <div class="cart-header">
-            <h2>Your Cart (<span class="cart-item-count">0</span>)</h2>
-            <p>Pick up at</p>
-            <p>Ready in</p>
+      <!-- MENU - OPTIONS - CATEGORIES -->
+
+      <nav class="slidemenu">
+        <!-- Item 1 -->
+        <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked />
+        <label for="slide-item-1"><span id="mostpopular-span">Most Popular</span></label>
+
+        <!-- Item 2 -->
+        <input type="radio" name="slideItem" id="slide-item-2" class="slide-toggle" checked />
+        <label for="slide-item-2"><span id="coffee-span">Coffee</span></label>
+
+        <!-- Item 3 -->
+        <input type="radio" name="slideItem" id="slide-item-3" class="slide-toggle" checked />
+        <label for="slide-item-3"><span id="bakery-span">Bakery</span></label>
+
+        <!-- Item 4 -->
+        <input type="radio" name="slideItem" id="slide-item-4" class="slide-toggle" checked />
+        <label for="slide-item-4"><span id="miscellaneous-span">Miscellaneous</span></label>
+
+        <div class="clear"></div>
+
+        <!-- BAR -->
+        <div class="slider">
+          <div class="bar"></div>
+        </div>
+      </nav>
+
+      <!-- MENU -->
+      <div class="menu-options-items">
+        <!-- MOST POPULAR -->
+        <div class="menu-items" id="most-popular">
+          <h2>Most Popular</h2>
+          <div class="description-picture">
+            <div class="item-name-and-description">
+              <h4 id="item-name">Latte</h4>
+              <br />
+              <p id="item-description">
+                Silky smooth steamed milk poured over shots of espresso.
+              </p>
+              <br />
+              <h4 id="item-price">$4.50</h4>
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1568046562322-0bbc869368ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
+              alt="hot latte" style="width: 250px; height: 90px; border-radius: 20px" />
           </div>
-          <div class="cart-order-items"></div>
-          <button
-            class="checkout"
-            style="
+        </div>
+
+        <!-- COFFEE - ITEMS-->
+        <h2 class="category-header">Coffee</h2>
+        <div class="coffee menu-items" id="coffee">
+          <% for (let key in coffeeObject) { %>
+            <div class="description-picture">
+              <div class="item-name-and-description">
+                <h4 id="item-name">
+                  <%= coffeeObject[key].name %>
+                </h4>
+                <br />
+                <p id="item-description">
+                  <%= coffeeObject[key].description %>
+                </p>
+                <br />
+                <h4 id="item-price">
+                  $<%= coffeeObject[key].price %>
+                </h4>
+              </div>
+              <img src=<%=coffeeObject[key].thumbnail_photo_url%>
+              style="width: 250px; height: 100px; border-radius: 20px"
+              />
+            </div>
+            <% } %>
+        </div>
+
+        <!-- BAKERY -->
+        <h2 class="category-header">Bakery</h2>
+        <div class="bakery menu-items" id="bakery">
+          <% for (let key in bakeryObject) { %>
+            <div class="description-picture">
+              <div class="item-name-and-description">
+                <h4 id="item-name">
+                  <%= bakeryObject[key].name %>
+                </h4>
+                <br />
+                <p id="item-description">
+                  <%= bakeryObject[key].description %>
+                </p>
+                <br />
+                <h4 id="item-price">
+                  $<%= bakeryObject[key].price %>
+                </h4>
+              </div>
+              <img src=<%=bakeryObject[key].thumbnail_photo_url%>
+              alt="hot latte"
+              style="width: 250px; height: 100px; border-radius: 20px"
+              />
+            </div>
+            <% } %>
+        </div>
+
+        <!-- Miscellaneous -->
+        <h2 class="category-header">Miscellaneous</h2>
+        <div class="miscellaneous menu-items" id="miscellaneous">
+          <% for (let key in miscellaneousObject) { %>
+            <div class="description-picture">
+              <div class="item-name-and-description">
+                <h4 id="item-name">
+                  <%= miscellaneousObject[key].name %>
+                </h4>
+                <br />
+                <p id="item-description">
+                  <%= miscellaneousObject[key].description %>
+                </p>
+                <br />
+                <h4 id="item-price">
+                  $<%= miscellaneousObject[key].price %>
+                </h4>
+              </div>
+              <img src=<%=miscellaneousObject[key].thumbnail_photo_url%>
+              alt="hot latte"
+              style="width: 250px; height: 100px; border-radius: 20px"
+              />
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT SIDE - CONTAINS CART/CHECKOUT -->
+    <div class="right-side-screen">
+      <div class="cart-info">
+        <div class="cart-header">
+          <h2>Your Cart (<span class="cart-item-count">0</span>)</h2>
+          <p>Pick up at</p>
+          <p>Ready in</p>
+        </div>
+        <div class="cart-order-items"></div>
+        <button class="checkout" style="
               display: flex;
               align-items: center;
               justify-content: space-between;
               padding-left: 20px;
               padding-right: 20px;
-            "
-          >
-            Checkout <span class="subtotal">$0</span>
-          </button>
-        </div>
+            ">
+          Checkout <span class="subtotal">$0</span>
+        </button>
       </div>
-      <div class="arrow-up">
-        <a href="#logo"
-          ><img src="/images/arrow-up.png" alt="arrow-up" class="arrow-up" />
-        </a>
-      </div>
-    </main>
-
-    <!-- POP UP -->
-
-    <div class="popup">
-      <div id="close">
-        <button id="close_button" c>&times;</button>
-      </div>
-      <div class="description">
-        <img
-          alt="Latte"
-          src="https://lh3.googleusercontent.com/2Uk92AII_rYGIioGlaIn7K9YQ-S01nVs05gbHZRwTapw11OUJfe14_0c8od9REiy4pJ0TAq-2Nf4zKZwED8WgzQXBOl5=c-w256"
-        />
-        <h2 id="item_name">Latte</h2>
-        <p>Silky Smooth streamed milk poured over shots of espresso.</p>
-      </div>
-      <form>
-        <div class="size">
-          <div class="option_titles">
-            <h3>Size</h3>
-          </div>
-          <div class="option_boxes">
-            <input type="radio" id="size_s" name="size" value="s" />
-            <div class="option_names">
-              <div>
-                <label for="size_s">Small (8oz)</label>
-              </div>
-              <div class="price">$3.25</div>
-            </div>
-          </div>
-          <div class="option_boxes">
-            <input type="radio" id="size_m" name="size" value="m" />
-            <div class="option_names">
-              <div>
-                <label for="size_m">Medium (12oz)</label>
-              </div>
-              <div class="price">$4.25</div>
-            </div>
-          </div>
-          <div class="option_boxes">
-            <input type="radio" id="size_l" name="size" value="l" />
-            <div class="option_names">
-              <div>
-                <label for="size_l">Large (16oz)</label>
-              </div>
-              <div class="price">$5.25</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="espresso_option">
-          <div class="option_titles">
-            <h3>Espresso Option</h3>
-          </div>
-          <div class="option_boxes">
-            <input
-              type="checkbox"
-              id="decaf"
-              name="espresso_option"
-              value="decaf"
-            />
-            <div class="option_names">
-              <div>
-                <label for="decaf">Make it Decaf</label>
-              </div>
-            </div>
-          </div>
-          <div class="option_boxes">
-            <input
-              type="checkbox"
-              id="extra_shot"
-              name="espresso_option"
-              value="extra_shot"
-            />
-            <div class="option_names">
-              <div>
-                <label for="extra_shot">Extra Espresso Shot</label>
-              </div>
-              <div class="price">$1</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="milk">
-          <div class="option_titles">
-            <h3>Milk</h3>
-          </div>
-          <div class="option_boxes">
-            <input
-              type="radio"
-              id="whole_milk"
-              name="milk"
-              value="whole_milk"
-            />
-            <div class="option_names">
-              <div>
-                <label for="whole_milk">Whole Milk</label>
-              </div>
-            </div>
-          </div>
-          <div class="option_boxes">
-            <input type="radio" id="skim_milk" name="milk" value="skim_milk" />
-            <div class="option_names">
-              <div>
-                <label for="skim_milk">Skim Milk</label>
-              </div>
-            </div>
-          </div>
-          <div class="option_boxes">
-            <input
-              type="radio"
-              id="almond_milk"
-              name="milk"
-              value="almond_milk"
-            />
-            <div class="option_names">
-              <div>
-                <label for="almond_milk">Almond Milk</label>
-              </div>
-              <div class="price">$1</div>
-            </div>
-          </div>
-          <div class="option_boxes">
-            <input type="radio" id="soy_milk" name="milk" value="soy_milk" />
-            <div class="option_names">
-              <div>
-                <label for="soy_milk">Soy Milk</label>
-              </div>
-              <div class="price">$1</div>
-            </div>
-          </div>
-          <div class="option_boxes">
-            <input type="radio" id="oat_milk" name="milk" value="oat_milk" />
-            <div class="option_names">
-              <div>
-                <label for="oat_milk">Oat Milk</label>
-              </div>
-              <div class="price">$1</div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="option_titles">
-            <h3>Sepcial Request</h3>
-          </div>
-          <textarea id="special_request"></textarea>
-        </div>
-        <div class="bottom_panel">
-          <div class="quantity_selector">
-            <button type="button" class="quantity_button">-</button>
-            <div id="quantity">1</div>
-            <button type="button" class="quantity_button">+</button>
-          </div>
-          <button type="submit" id="add_cart">Add To Cart</button>
-        </div>
-      </form>
     </div>
+    <div class="arrow-up">
+      <a href="#logo"><img src="/images/arrow-up.png" alt="arrow-up" class="arrow-up" />
+      </a>
+    </div>
+  </main>
 
-    <!-- CHECKOUT DIV -->
-    <main class="checkout-container">
-      <div class="popup-phone">
-        <h2>Enter your mobile number</h2>
-        <p style="padding-top: 20px; font-size: 14px">
-          Your mobile phone number is your login - it’s also how we alert you
-          when your food is ready
-        </p>
-        <br />
-        <label for="phone" style="font-size: 10px"
-          >Phone Number (your mobile phone number is your login)</label
-        ><br />
+  <!-- POP UP -->
 
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          placeholder="(123) 456-7890"
-          required
-        />
-        <br />
-        <button class="confirm-btn">Confirm order</button>
+  <div class="popup">
+    <div id="close">
+      <button id="close_button" c>&times;</button>
+    </div>
+    <div class="description">
+      <img alt="Latte"
+        src="https://lh3.googleusercontent.com/2Uk92AII_rYGIioGlaIn7K9YQ-S01nVs05gbHZRwTapw11OUJfe14_0c8od9REiy4pJ0TAq-2Nf4zKZwED8WgzQXBOl5=c-w256" />
+      <h2 id="item_name">Latte</h2>
+      <p>Silky Smooth streamed milk poured over shots of espresso.</p>
+    </div>
+    <form>
+      <div class="size">
+        <div class="option_titles">
+          <h3>Size</h3>
+        </div>
+        <div class="option_boxes">
+          <input type="radio" id="size_s" name="size" value="s" />
+          <div class="option_names">
+            <div>
+              <label for="size_s">Small (8oz)</label>
+            </div>
+            <div class="price">$3.25</div>
+          </div>
+        </div>
+        <div class="option_boxes">
+          <input type="radio" id="size_m" name="size" value="m" />
+          <div class="option_names">
+            <div>
+              <label for="size_m">Medium (12oz)</label>
+            </div>
+            <div class="price">$4.25</div>
+          </div>
+        </div>
+        <div class="option_boxes">
+          <input type="radio" id="size_l" name="size" value="l" />
+          <div class="option_names">
+            <div>
+              <label for="size_l">Large (16oz)</label>
+            </div>
+            <div class="price">$5.25</div>
+          </div>
+        </div>
       </div>
-    </main>
-  </body>
+
+      <div class="espresso_option">
+        <div class="option_titles">
+          <h3>Espresso Option</h3>
+        </div>
+        <div class="option_boxes">
+          <input type="checkbox" id="decaf" name="espresso_option" value="decaf" />
+          <div class="option_names">
+            <div>
+              <label for="decaf">Make it Decaf</label>
+            </div>
+          </div>
+        </div>
+        <div class="option_boxes">
+          <input type="checkbox" id="extra_shot" name="espresso_option" value="extra_shot" />
+          <div class="option_names">
+            <div>
+              <label for="extra_shot">Extra Espresso Shot</label>
+            </div>
+            <div class="price">$1</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="milk">
+        <div class="option_titles">
+          <h3>Milk</h3>
+        </div>
+        <div class="option_boxes">
+          <input type="radio" id="whole_milk" name="milk" value="whole_milk" />
+          <div class="option_names">
+            <div>
+              <label for="whole_milk">Whole Milk</label>
+            </div>
+          </div>
+        </div>
+        <div class="option_boxes">
+          <input type="radio" id="skim_milk" name="milk" value="skim_milk" />
+          <div class="option_names">
+            <div>
+              <label for="skim_milk">Skim Milk</label>
+            </div>
+          </div>
+        </div>
+        <div class="option_boxes">
+          <input type="radio" id="almond_milk" name="milk" value="almond_milk" />
+          <div class="option_names">
+            <div>
+              <label for="almond_milk">Almond Milk</label>
+            </div>
+            <div class="price">$1</div>
+          </div>
+        </div>
+        <div class="option_boxes">
+          <input type="radio" id="soy_milk" name="milk" value="soy_milk" />
+          <div class="option_names">
+            <div>
+              <label for="soy_milk">Soy Milk</label>
+            </div>
+            <div class="price">$1</div>
+          </div>
+        </div>
+        <div class="option_boxes">
+          <input type="radio" id="oat_milk" name="milk" value="oat_milk" />
+          <div class="option_names">
+            <div>
+              <label for="oat_milk">Oat Milk</label>
+            </div>
+            <div class="price">$1</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="option_titles">
+          <h3>Sepcial Request</h3>
+        </div>
+        <textarea id="special_request"></textarea>
+      </div>
+      <div class="bottom_panel">
+        <div class="quantity_selector">
+          <button type="button" class="quantity_button">-</button>
+          <div id="quantity">1</div>
+          <button type="button" class="quantity_button">+</button>
+        </div>
+        <button type="submit" id="add_cart">Add To Cart</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- CHECKOUT DIV -->
+  <main class="checkout-container">
+    <div class="popup-phone">
+      <h2>Enter your mobile number</h2>
+      <p style="padding-top: 20px; font-size: 14px">
+        Your mobile phone number is your login - it’s also how we alert you
+        when your food is ready
+      </p>
+      <br />
+      <label for="phone" style="font-size: 10px">Phone Number (your mobile phone number is your login)</label><br />
+
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="(123) 456-7890"
+        required />
+      <br />
+      <button class="confirm-btn">Confirm order</button>
+    </div>
+  </main>
+</body>
+
 </html>

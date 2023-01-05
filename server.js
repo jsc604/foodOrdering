@@ -20,6 +20,8 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
+
 app.use(
   '/styles',
   sassMiddleware({
@@ -41,6 +43,7 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const orderRoutes = require('./routes/orders');
+const menuRoutes = require('./routes/menu-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -49,6 +52,7 @@ app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/orders', orderRoutes);
+app.use('/menu', menuRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -77,23 +81,12 @@ app.get('/login/:id', (req, res) => {
   const id = req.params.id;
 // Save id in session
   req.session.user_id = id;
-
-
-
   res.redirect('/');
 });
 
-app.post('/echo', (req, res) => {
-  console.log("body", req.body);
-  //const data =
+app.post('/menu', (req, res) => {
   res.json(req.body);
 });
-app.get('/menu', (req, res) => {
-  res.render('menu');
-});
-
-
-
 
 // make an order
 //insert into database
@@ -103,9 +96,6 @@ app.get('/menu', (req, res) => {
 //POST - after accepting order
 // provide database - return wait time, phone, number, order id
 // send text to customer
-
-
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

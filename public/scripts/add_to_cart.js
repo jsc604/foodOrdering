@@ -17,7 +17,7 @@ $(document).ready(function () {
     //get name
     itemData.name = $('#item_name').text();
     //get price
-    itemData.price ='3.5';
+    itemData.price = '3.5';
 
 
     for (const addOn of addOns) {
@@ -32,39 +32,20 @@ $(document).ready(function () {
     }
 
     //submit data
-    $.post('/echo', itemData)
+    $.post('/menu', itemData)
       .then(data => {
-        let instruction = `${data.size}, ${data.milk}`;
-        console.log(data.espresso_option);
-        if (data.espresso_option !== undefined) {
-          instruction.concat(`, ${data.espresso_option}`);
-        }
-        if (data.special_request !== undefined) instruction.concat(`, ${data.special_request}`);
-        console.log(instruction);
-        const cart = $('.cart-order-items');
-        cart.append(`
-        <div class="cart-order-item">
-          <div class="quantity">
-            <h4>${data.quantity}</h4>
-          </div>
-          <div class="item-description">
-            <div class="item-info">
-              <h4 class="item-name">${data.name}</h4>
-              <p class="instruction">${instruction}</p>
-            </div>
-
-          </div>
-
-          <div class="price"><h4>$${data.price}</h4></div>
-
-          <span class="remove-up remove">Remove</span>
-        </div>
-      `)
+        createCartElement(data);
       });
 
+    //reset page
+      resetPage();
+  })
 
 
+  //CART
 
+  //reset page
+  const resetPage = function() {
       //clear special request
       $('#special_request').val("");
       //reset radio buttons and checkbox
@@ -74,81 +55,28 @@ $(document).ready(function () {
       $('#quantity').text(1);
       //close pop up screen
       $(".popup").hide();
-
-
-
-
-    // Calculate total price when item added
-
-
-
-
-    // $.ajax({
-    //   url: "",
-    //   method: 'POST',
-    //   data: itemData
-    // })
-
-
-    //$(this).prop('checked', false);
-    // $(function () {
-    //   const $orders = $('.cart-order-items');
-
-    //   $.ajax({
-    //     type: "GET",
-    //     // URL TO DATABASE
-    //     url: "#",
-    //     success: function (data) {
-    //       //test with console.log('success', data) to see objects
-    //       $.each(orders, function (i, order) {
-    //          $orders.append(``)
-    //       });
-    //     },
-    //   });
-    // });
-
-  })
-
-
-  //CART
-
-  //load all previous items in cart
-  const loadCart = function () {
-    $.ajax({
-      url: "/tweets/",
-      method: 'GET',
-    })
-      .then((data) => {
-        renderTweets(data);
-      })
-  };
-
+  }
 
   //creating html element for each item
-  const createCartElement = cartData => {
-    let instruction = `${cartData.size}, ${cartData.milk}`;
-    if (cartData.espresso_option) {
-      instruction.append(`, ${cartData.espresso_option}`);
-    }
-    if (cartData.special_request) instruction.append(`, ${cartData.special_request}`);
+  const createCartElement = function(data) {
+    let instruction = `${data.size}, ${data.milk}`;
+    if (data.espresso_option !== undefined) instruction.concat(`, ${data.espresso_option}`);
+    if (data.special_request !== undefined) instruction.concat(`, ${data.special_request}`);
+
+    //if option has a price, need to add on the total price
 
 
-    const cart = `
-  <div class="cart-order-items">
-
-    <div class="quantity"><h4>${cartData.quantity}</h4></div>
-
-    <div class="item-description">
-      <h4 class="item-name">${cartData.name}</h4>
-      <p class="instruction">${instruction}</p>
-      <span class="remove">Remove</span>
-    </div>
-
-    <div class="price"><h4>${cartData.price}</h4></div>
-
-  </div>
-  `
-  }
+    const cart = $('.cart-order-items');
+    cart.append(`
+          <div class="quantity"><h4>${data.quantity}</h4></div>
+          <div class="item-description">
+            <h4 class="item-name">${data.name}</h4>
+            <p class="instruction">${instruction}</p>
+            <span class="remove">Remove</span>
+          </div>
+          <div class="price"><h4>$${data.price*data.quantity}</h4></div>
+      `)
+  };
 
   //rendering all items submitted
   const renderItems = function (items) {
