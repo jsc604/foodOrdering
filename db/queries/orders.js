@@ -49,8 +49,7 @@ const startOrder = (id) => {
 const completeOrder = (id) => {
   return db.query(`
   UPDATE orders
-  SET start_time = CURRENT_TIMESTAMP,
-      completion_time = CURRENT_TIMESTAMP,
+  SET completion_time = CURRENT_TIMESTAMP,
       status = 'complete'
   WHERE id = $1;
   `, [id])

@@ -5,6 +5,5 @@ CREATE TABLE menu_items (
   price INTEGER NOT NULL,
   description VARCHAR(255) NOT NULL,
   category_id INTEGER REFERENCES menu_category(id) ON DELETE CASCADE,
-  thumbnail_photo_url VARCHAR(255),
-  cover_photo_url VARCHAR(255)
+  thumbnail_photo_url VARCHAR(255)
   );

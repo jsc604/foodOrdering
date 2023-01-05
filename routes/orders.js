@@ -1,6 +1,7 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 const userQueries = require('../db/queries/orders');
+const { messageToCustomer, messageToRestaurant } = require('../twilio');
 
 // GET NEW ORDERS
 router.get('/new', (req, res) => {
@@ -57,11 +58,10 @@ router.get('/complete', (req, res) => {
 // POST START ORDER
 router.post('/start-order', (req, res) => {
   const customerId = req.body.start_order;
-  userQueries.startOrder(customerId)
-    .then(data => {
-      console.log('......order recorded.......');
-      return;
-    });
+  userQueries.startOrder(customerId);
+  messageToCustomer(customerId, customerId, customerId);
+  console.log('......order recorded.......');
+  return;
 });
 
 //POST COMPLETE ORDER
@@ -70,18 +70,16 @@ router.post('/complete-order', (req, res) => {
   userQueries.completeOrder(customerId)
     .then(data => {
       console.log('......order completed.......');
-      res.json({data});
+      res.json({ data });
     });
 });
 
 // POST PICKUP ORDER
 router.post('/complete', (req, res) => {
   const customerId = req.body.status;
-  userQueries.pickUpOrder(customerId)
-    .then(data => {
-      console.log('......order picked up.......');
-      return;
-    });
+  userQueries.pickUpOrder(customerId);
+  console.log('......order picked up.......');
+  return;
 });
 
 module.exports = router;
