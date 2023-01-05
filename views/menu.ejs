@@ -186,6 +186,21 @@ main {
   grid-template-columns: 1fr 1fr;
   grid-auto-rows: auto;
 }
+.bakery {
+  gap: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: auto;
+}
+.miscellaneous {
+  gap: 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: auto;
+}
+.category-header {
+  padding-top: 15px;
+}
 
 .item-name-and-description {
   padding-top: 10px;
@@ -559,79 +574,79 @@ main {
           </div>
 
           <!-- COFFEE - ITEMS-->
-          <h2>Coffee</h2>
+          <h2 class="category-header">Coffee</h2>
           <div class="coffee menu-items" id="coffee">
+            <% for (let key in coffeeObject) { %>
             <div class="description-picture">
               <div class="item-name-and-description">
-                <h4 id="item-name">Latte</h4>
+                <h4 id="item-name">
+                  <%= coffeeObject[key].name %>
+                </h4>
                 <br />
                 <p id="item-description">
-                  Silky smooth steamed milk poured over shots of espresso.
+                  <%= coffeeObject[key].description %>
                 </p>
                 <br />
-                <h4 id="item-price">$4.50</h4>
+                <h4 id="item-price">
+                  $<%= coffeeObject[key].price %>
+                </h4>
               </div>
               <img
-                src="https://images.unsplash.com/photo-1568046562322-0bbc869368ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
-                alt="hot latte"
+                src=<%=coffeeObject[key].thumbnail_photo_url%>
                 style="width: 250px; height: 100px; border-radius: 20px"
               />
             </div>
-
-            <div class="description-picture">
-              <div class="item-name-and-description">
-                <h4 id="item-name">Latte</h4>
-                <br />
-                <p id="item-description">
-                  Silky smooth steamed milk poured over shots of espresso.
-                </p>
-                <br />
-                <h4 id="item-price">$4.50</h4>
-              </div>
-              <img
-                src="https://images.unsplash.com/photo-1568046562322-0bbc869368ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
-                alt="hot latte"
-                style="width: 250px; height: 100px; border-radius: 20px"
-              />
-            </div>
+            <% } %>
           </div>
 
           <!-- BAKERY -->
+          <h2 class="category-header">Bakery</h2>
           <div class="bakery menu-items" id="bakery">
-            <h2>Bakery</h2>
+            <% for (let key in bakeryObject) { %>
             <div class="description-picture">
               <div class="item-name-and-description">
-                <h4 id="item-name">Latte</h4>
+                <h4 id="item-name">
+                  <%= bakeryObject[key].name %>
+                </h4>
                 <br />
                 <p id="item-description">
-                  Silky smooth steamed milk poured over shots of espresso.
+                  <%= bakeryObject[key].description %>
                 </p>
                 <br />
-                <h4 id="item-price">$4.50</h4>
+                <h4 id="item-price">
+                  $<%= bakeryObject[key].price %>
+                </h4>
               </div>
               <img
-                src="https://images.unsplash.com/photo-1568046562322-0bbc869368ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
+                src=
+                <%=bakeryObject[key].thumbnail_photo_url%>
                 alt="hot latte"
                 style="width: 250px; height: 100px; border-radius: 20px"
               />
             </div>
+            <% } %>
           </div>
 
           <!-- Miscellaneous -->
+          <h2 class="category-header">Miscellaneous</h2>
           <div class="miscellaneous menu-items" id="miscellaneous">
-            <h2>Miscellaneous</h2>
+            <% for (let key in miscellaneousObject) { %>
             <div class="description-picture">
               <div class="item-name-and-description">
-                <h4 id="item-name">Latte</h4>
+                <h4 id="item-name">
+                  <%= miscellaneousObject[key].name %>
+                </h4>
                 <br />
                 <p id="item-description">
-                  Silky smooth steamed milk poured over shots of espresso.
+                  <%= miscellaneousObject[key].description %>
                 </p>
                 <br />
-                <h4 id="item-price">$4.50</h4>
+                <h4 id="item-price">
+                  $<%= miscellaneousObject[key].price %>
+                </h4>
               </div>
               <img
-                src="https://images.unsplash.com/photo-1568046562322-0bbc869368ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
+                src=<%=miscellaneousObject[key].thumbnail_photo_url%>
                 alt="hot latte"
                 style="width: 250px; height: 100px; border-radius: 20px"
               />
