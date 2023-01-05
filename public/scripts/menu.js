@@ -58,19 +58,4 @@ $(document).ready(function () {
 
   });
 
-  //UPDATE CART TOTAL
-  function update_amounts() {
-    let sum = 0.0;
-    $(".quantity").each(function () {
-      let quantity = $(this).find("#quantity").val();
-      console.log(quantity, "test");
-      let price = $(this).find(".price").val();
-      let amount = quantity * price;
-      sum += amount;
-      $(this)
-        .find(".subtotal")
-        .text("" + amount);
-    });
-    $("subtotal").text(sum);
-  }
 });
