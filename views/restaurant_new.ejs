@@ -4,32 +4,29 @@
 <head>
   <title>Home Page</title>
 
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/restaurant_orders.css" />
 
-  <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-      crossorigin="anonymous"
-    />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
 
-  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script defer src="/scripts/orders.js"></script>
 </head>
 
 <body>
   <header>
     <nav class="navbar navbar-expand-md navbar-dark>
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/new-orders">New Orders</a>
-          <a class="nav-item nav-link" href="/completed-orders">Completed orders</a>
-        </div>
+        <div class=" navbar-nav">
+      <a class="nav-item nav-link" href="/orders/new">New Orders</a>
+      <a class="nav-item nav-link" href="/orders/complete">Completed orders</a>
+      </div>
     </nav>
   </header>
 
@@ -40,61 +37,60 @@
           <th scope="col">Order ID</th>
           <th scope="col">Customer Name</th>
           <th scope="col">Items</th>
+          <th scope="col">Start Order</th>
           <th scope="col">Complete</th>
         </tr>
       </thead>
       <tbody>
+        <% for (let order in ordersObject) { %>
           <tr>
+
             <td>
-              00001
+              <%= ordersObject[order].id %>
             </td>
+
             <td>
-              person 1
+              <%= ordersObject[order].name %>
             </td>
+
             <td>
-              item 1<br>
-              item 2<br>
-              item 3<br>
+              <table>
+                <% for (let item of ordersObject[order].items) { %>
+                  <tr>
+                    <td class="nested">
+                      <%= item %>
+                    </td>
+                  </tr>
+                  <%}%>
+              </table>
             </td>
-            <td>
-              <form method="POST" action="/new-orders">
-                <button type="submit" class="btn btn-success">Complete</button>
-              </form>
-            </td>
+
+            <% if (!ordersObject[order].start_time) { %>
+              <td>
+                <form method="POST" action="/orders/start-order">
+                  <input type="hidden" value=<%=ordersObject[order].id%> name="start_order"/>
+                  <button type="submit" class="btn start-order btn-danger">Start Order</button>
+                </form>
+              </td>
+              <td>
+                <form method="POST" action="/orders/complete-order" id="completeForm">
+                  <input type="hidden" value=<%=ordersObject[order].id%> name="complete_order"/>
+                  <button type="submit" class="btn btn-success disabled">Complete</button>
+                </form>
+              </td>
+            <% } else { %>
+              <td>
+                <button type="submit" class="btn start-order btn-warning disabled" style="color: black; border: 1px solid #dc3545;"><%= ordersObject[order].start_time %></button>
+              </td>
+              <td>
+                <form method="POST" action="/orders/complete-order" id="completeForm">
+                  <input type="hidden" value=<%=ordersObject[order].id%> name="complete_order"/>
+                  <button type="submit" class="btn btn-success ">Complete</button>
+                </form>
+              </td>
+              <%}%>
           </tr>
-          <tr>
-            <td>
-              00002
-            </td>
-            <td>
-              person 2
-            </td>
-            <td>
-              item 1<br>
-              item 2<br>
-            </td>
-            <td>
-              <form method="POST" action="/new-orders">
-                <button type="submit" class="btn btn-success">Complete</button>
-              </form>
-            </td>
-          <tr>
-            <td>
-              00003
-            </td>
-            <td>
-              person 3
-            </td>
-            <td>
-              item 1<br>
-              item 3<br>
-            </td>
-            <td>
-              <form method="POST" action="/new-orders">
-                <button type="submit" class="btn btn-success">Complete</button>
-              </form>
-            </td>
-          </tr>
+          <%}%>
       </tbody>
     </table>
   </div>

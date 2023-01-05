@@ -1,7 +1,12 @@
-.nav-item {
-  color: white;
+nav {
+  position: fixed;
+  background-color: rgb(9, 174, 224);
+  
+  .nav-item {
+    color: white;
+  }
 }
 
-.navbar {
-  background-color: rgb(9, 174, 224);
+table td .nested {
+  border-top: 0;
 }
