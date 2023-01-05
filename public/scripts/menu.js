@@ -32,6 +32,13 @@ $(document).ready(function () {
       window.location.href = "#miscellaneous";
     });
 
+
+    //REMOVE ITEM FROM CART
+    $(document).on('click', '.remove-opt', function() {
+      $(this).parent().remove();
+      $('.price').remove();
+      $('.quantity').remove();
+    });
     //
     // $(function () {
     //   const $orders = $('.cart-order-items');
@@ -50,6 +57,11 @@ $(document).ready(function () {
     // });
 
 
-    //add to cart
+  //CART ITEM COUNT
+  let cart_item_count = 0;
+  $('.#add_cart').click(function() {
+    cart_item_count++;
+    let count_span = $(this).parents('.cart-item-count').
+  })
 
   });
