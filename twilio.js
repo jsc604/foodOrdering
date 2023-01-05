@@ -32,7 +32,7 @@ const messageToCustomer = (name, phone, orderID, waitTime) => {
 const messageToRestaurant = (orderID) => {
   client.messages
     .create({
-      body: `New order. Order ID is ${orderID}`,
+      body: `New order was placed. Order ID is ${orderID}`,
       from: fromNumber,
       // this is "restaurant" number will be a personal # , will not be replaced
       to: toNumber,
