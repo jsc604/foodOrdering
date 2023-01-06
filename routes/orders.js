@@ -115,10 +115,11 @@ router.post('/start-order', (req, res) => {
 //POST COMPLETE ORDER
 router.post('/complete-order', (req, res) => {
   const customerId = req.body.complete_order;
+  console.log('======', customerId);
   userQueries.completeOrder(customerId)
     .then(data => {
       console.log('......order completed.......');
-      res.json({ data });
+      res.redirect('/orders/new');
     });
 });
 

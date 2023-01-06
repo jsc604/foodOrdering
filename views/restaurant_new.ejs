@@ -75,7 +75,7 @@
               <td>
                 <form method="POST" action="/orders/complete-order" id="completeForm">
                   <input type="hidden" value=<%=ordersObject[order].id%> name="complete_order"/>
-                  <button type="submit" class="btn btn-success disabled">Complete</button>
+                  <button type="submit" class="btn btn-success disabled" disabled>Complete</button>
                 </form>
               </td>
             <% } else { %>

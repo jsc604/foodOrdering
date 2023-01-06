@@ -19,6 +19,7 @@ $(() => {
     $(this).text(`ORDER STARTED ON: ${currentDateTime}`);
 
     $(this).closest('tr').find('.btn-success').removeClass('disabled');
+    $(this).closest('tr').find('.btn-success').attr('disabled', false);
 
     // Check if the button is already disabled
     if (!$(this).prop('disabled')) {
@@ -34,7 +35,7 @@ $(() => {
 
 
   // COMPLETED BUTTON
-  $('#completeForm').click(function(event) {
+  $('#completeForm').submit(function(event) {
     event.preventDefault();
     $.ajax({
       url: '/orders/complete-order',
