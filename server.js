@@ -60,10 +60,11 @@ app.use('/menu', menuRoutes);
 // Separate them into separate routes files (see above).
 
 app.get('/', (req, res) => {
+  console.log("req", req.session);
 const id = req.session.user_id;
 //fetch user from database
 const user = {id, name: "Alice"};
-console.log(user);
+
 if (!user) {
   res.render('menu');
   return;
