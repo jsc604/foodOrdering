@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="home.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('https://images.unsplash.com/photo-1650718165797-74d849393574?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2134&q=80');
+    font-family: 'Poppins', sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+li, a, button {
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+header  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    background-color: #F4F4F4;
+    height: 80px;
+}
+
+.logo {
+    cursor: pointer;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    display: inline-block;
+    margin: 0 50px;
+    line-height: 80px;
+}
+
+.menu li a {
+    transition: all 0.3s ease 0s;
+    color: black;
+}
+
+.menu li a:hover {
+    transition: all 0.3s ease 0s;
+    /* text-decoration: underline; */
+    background-color: black;
+    color: white;
+}
+
+header button {
+    padding: 9px 25px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.menu a {
+    font-size: 16px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+}
+
+a:hover {
+    background-color: black;
+    color: white;
+}
+
+.order {
+    background-color: black;
+    color: white;
+    width: 200px;
+    height: 60px;
+    font-size: 30px;
+    position: absolute;
+    top: 75%;
+    left: 45%;
+    border: none;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1050px) {
+    header {
+        font-size: 1em;
+        padding: 10px;
+    }
+    body {
+        background-size: cover;
+    }
+.order {
+    font-size: 1em;
+    width: 150px;
+    height: 50px;
+    right: 50%;
+}
+
+}
+
+#thanks {
+  text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+
+  }
+    </style>
+</head>
+<body>
+    <h1 id="thanks">THANKS YOU FOR YOUR ORDER!</button></h1>
+    <a href="/menu"><button class="order">Order Again!</button></a>
+    <header>
+        <img src="/images/cup.png" class="logo" style="width: 70px;height: 40px;"/>
+        <ul class="menu">
+            <li><a href="/index" class="active">  HOME  </a></li>
+            <li><a href="/menu">  MENU  </a></li>
+            <li><a href="#"> CONTACT US  </a></li>
+        </ul>
+        <div class="right">
+        <i class="fa-sharp fa-solid fa-cart-shopping fa-xl" style="padding-right: 30px"></i>
+        <a class="login"  href="#"><button>Login</button></a>
+        </div>
+
+    </header>
+</body>
+</html>
