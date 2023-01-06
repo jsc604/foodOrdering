@@ -381,7 +381,7 @@
       color: rgb(122, 125, 138);
     }
 
-    #special_request {
+    .special_request {
       width: 100%;
       box-sizing: border-box;
       background: rgb(245, 245, 245);
@@ -567,30 +567,11 @@
 
       <!-- MENU -->
       <div class="menu-options-items">
-        <!-- MOST POPULAR -->
-        <!-- <div class="menu-items" id="most-popular">
-          <h2>Most Popular</h2>
-          <div class="description-picture">
-            <div class="item-name-and-description">
-              <h4 id="item-name">Latte</h4>
-              <br />
-              <p id="item-description">
-                Silky smooth steamed milk poured over shots of espresso.
-              </p>
-              <br />
-              <h4 id="item-price">$4.50</h4>
-            </div>
-            <img
-              src="https://images.unsplash.com/photo-1568046562322-0bbc869368ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1335&q=80"
-              alt="hot latte" style="width: 250px; height: 90px; border-radius: 20px" />
-          </div>
-        </div> -->
 
         <!-- COFFEE - ITEMS-->
         <h2 class="category-header">Coffee</h2>
         <div class="coffee menu-items" id="coffee">
           <% for (let key in coffeeObject) { %>
-
             <div class="popup" id="popup-<%= key%>">
               <div>
                 <button class="close_button" c>&times;</button>
@@ -600,14 +581,14 @@
                 src=<%= coffeeObject[key].thumbnail_photo_url %>
                 style=" width: 250px; height: 200px;"
                 />
-                <h2 id="item_name">
+                <h2 id="item_name-<%= key%>">
                   <%= coffeeObject[key].name %>
                 </h2>
                 <p>
                   <%= coffeeObject[key].description %>
                 </p>
               </div>
-              <form>
+              <form class="add-to-cart" data-id="<%= key %>">
                 <div class="size">
                   <div class="option_titles">
                     <h3>Size</h3>
@@ -638,7 +619,7 @@
                       <div>
                         <label for="size_l">Large (16oz)</label>
                       </div>
-                      <div class="price">$<%= coffeeObject[key].price %></div>
+                      <div class="price">$<%= coffeeObject[key].price+1.5 %></div>
                     </div>
                   </div>
                 </div>
@@ -718,13 +699,13 @@
                   <div class="option_titles">
                     <h3>Sepcial Request</h3>
                   </div>
-                  <textarea id="special_request"></textarea>
+                  <textarea class="special_request" id="special_request-<%= key%>"></textarea>
                 </div>
                 <div class="bottom_panel">
                   <div class="quantity_selector">
-                    <button type="button" class="quantity_button">-</button>
-                    <div id="quantity">1</div>
-                    <button type="button" class="quantity_button">+</button>
+                    <button type="button" class="quantity_button" data-id="<%= key%>">-</button>
+                    <div id="quantity-<%= key%>">1</div>
+                    <button type="button" class="quantity_button" data-id="<%= key%>">+</button>
                   </div>
                   <button type="submit" id="add_cart">Add To Cart</button>
                 </div>
@@ -733,15 +714,15 @@
 
             <div class="description-picture" data-id="<%= key %>">
               <div class="item-name-and-description">
-                <h4 id="item-name">
+                <h4 id="item-name-<%= key%>">
                   <%= coffeeObject[key].name %>
                 </h4>
                 <br />
-                <p id="item-description">
+                <p id="item-description-<%= key%>">
                   <%= coffeeObject[key].description %>
                 </p>
                 <br />
-                <h4 id="item-price">
+                <h4 id="item-price-<%= key%>">
                   $<%= coffeeObject[key].price %>
                 </h4>
               </div>
@@ -765,14 +746,14 @@
                 src=<%= bakeryObject[key].thumbnail_photo_url %>
                 style=" width: 250px; height: 200px;"
                 />
-                <h2 id="item_name">
+                <h2 id="item_name-<%= key%>">
                   <%= bakeryObject[key].name %>
                 </h2>
                 <p>
                   <%= bakeryObject[key].description %>
                 </p>
               </div>
-              <form>
+              <form class="add-to-cart" data-id="<%= key%>">
                 <div class="size">
                   <div class="option_titles">
                     <h3>Flavour</h3>
@@ -786,126 +767,53 @@
                     </div>
                   </div>
                   <div class="option_boxes">
-                    <input type="radio" id="size_m" name="size" value="medium" />
+                    <input type="radio" id="flavour_almond_butter" name="flavour" value="medium" />
                     <div class="option_names">
                       <div>
-                        <label for="size_m">Medium (12oz)</label>
+                        <label for="flavour_almond_butter">Almond Butter</label>
                       </div>
                     </div>
                   </div>
                   <div class="option_boxes">
-                    <input type="radio" id="size_l" name="size" value="large" />
+                    <input type="radio" id="white_chocolate" name="size" value="large" />
                     <div class="option_names">
                       <div>
-                        <label for="size_l">Large (16oz)</label>
+                        <label for="white_chocolate">White Chocolate</label>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="espresso_option">
-                  <div class="option_titles">
-                    <h3>Espresso Option</h3>
-                  </div>
-                  <div class="option_boxes">
-                    <input type="checkbox" id="decaf" name="espresso_option" value="decaf" />
-                    <div class="option_names">
-                      <div>
-                        <label for="decaf">Make it Decaf</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="option_boxes">
-                    <input type="checkbox" id="extra_shot" name="espresso_option" value="extra_shot" />
-                    <div class="option_names">
-                      <div>
-                        <label for="extra_shot">Extra Espresso Shot</label>
-                      </div>
-                      <div class="price">$1</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="milk">
-                  <div class="option_titles">
-                    <h3>Milk</h3>
-                  </div>
-                  <div class="option_boxes">
-                    <input type="radio" id="whole_milk" name="milk" value="whole_milk" />
-                    <div class="option_names">
-                      <div>
-                        <label for="whole_milk">Whole Milk</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="option_boxes">
-                    <input type="radio" id="skim_milk" name="milk" value="skim_milk" />
-                    <div class="option_names">
-                      <div>
-                        <label for="skim_milk">Skim Milk</label>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="option_boxes">
-                    <input type="radio" id="almond_milk" name="milk" value="almond_milk" />
-                    <div class="option_names">
-                      <div>
-                        <label for="almond_milk">Almond Milk</label>
-                      </div>
-                      <div class="price">$1</div>
-                    </div>
-                  </div>
-                  <div class="option_boxes">
-                    <input type="radio" id="soy_milk" name="milk" value="soy_milk" />
-                    <div class="option_names">
-                      <div>
-                        <label for="soy_milk">Soy Milk</label>
-                      </div>
-                      <div class="price">$1</div>
-                    </div>
-                  </div>
-                  <div class="option_boxes">
-                    <input type="radio" id="oat_milk" name="milk" value="oat_milk" />
-                    <div class="option_names">
-                      <div>
-                        <label for="oat_milk">Oat Milk</label>
-                      </div>
-                      <div class="price">$1</div>
-                    </div>
-                  </div>
-                </div>
-                <div>
                   <div class="option_titles">
                     <h3>Sepcial Request</h3>
                   </div>
-                  <textarea id="special_request"></textarea>
+                  <div>
+                  <textarea class="special_request" id="special_request-<%= key%>"></textarea>
                 </div>
                 <div class="bottom_panel">
                   <div class="quantity_selector">
-                    <button type="button" class="quantity_button">-</button>
-                    <div id="quantity">1</div>
-                    <button type="button" class="quantity_button">+</button>
+                    <button type="button" class="quantity_button" data-id="<%= key%>">-</button>
+                    <div id="quantity-<%= key%>">1</div>
+                    <button type="button" class="quantity_button" data-id="<%= key%>">+</button>
                   </div>
                   <button type="submit" id="add_cart">Add To Cart</button>
                 </div>
               </form>
             </div>
-            <div class="description-picture">
+            <div class="description-picture" data-id="<%= key %>">
               <div class="item-name-and-description">
-                <h4 id="item-name">
+                <h4 id="item-name-<%= key%>">
                   <%= bakeryObject[key].name %>
                 </h4>
                 <br />
-                <p id="item-description">
+                <p id="item-description-<%= key%>">
                   <%= bakeryObject[key].description %>
                 </p>
                 <br />
-                <h4 id="item-price">
+                <h4 id="item-price-<%= key%>">
                   $<%= bakeryObject[key].price %>
                 </h4>
               </div>
               <img src=<%=bakeryObject[key].thumbnail_photo_url%>
-              alt="hot latte"
               style="width: 250px; height: 100px; border-radius: 20px"
               />
             </div>
@@ -916,22 +824,55 @@
         <h2 class="category-header">Miscellaneous</h2>
         <div class="miscellaneous menu-items" id="miscellaneous">
           <% for (let key in miscellaneousObject) { %>
-            <div class="description-picture">
+            <div class="popup" id="popup-<%= key%>">
+              <div class=".close">
+                <button class="close_button" c>&times;</button>
+              </div>
+              <div class="description">
+                <img
+                src=<%= miscellaneousObject[key].thumbnail_photo_url %>
+                style=" width: 250px; height: 200px;"
+                />
+                <h2 id="item_name-<%= key%>">
+                  <%= miscellaneousObject[key].name %>
+                </h2>
+                <p>
+                  <%= miscellaneousObject[key].description %>
+                </p>
+              </div>
+              <form class="add-to-cart" data-id="<%= key%>">
+                  <div class="option_titles">
+                    <h3>Special Request</h3>
+                  </div>
+                  <div>
+                  <textarea class="special_request" id="special_request-<%= key%>"></textarea>
+                </div>
+                <div class="bottom_panel">
+                  <div class="quantity_selector">
+                    <button type="button" class="quantity_button" data-id="<%= key%>">-</button>
+                    <div id="quantity-<%= key%>">1</div>
+                    <button type="button" class="quantity_button" data-id="<%= key%>">+</button>
+                  </div>
+                  <button type="submit" id="add_cart">Add To Cart</button>
+                </div>
+              </form>
+            </div>
+
+            <div class="description-picture" data-id="<%= key %>">
               <div class="item-name-and-description">
-                <h4 id="item-name">
+                <h4 id="item-name-<%= key%>">
                   <%= miscellaneousObject[key].name %>
                 </h4>
                 <br />
-                <p id="item-description">
+                <p id="item-description-<%= key%>">
                   <%= miscellaneousObject[key].description %>
                 </p>
                 <br />
-                <h4 id="item-price">
+                <h4 id="item-price-<%= key%>">
                   $<%= miscellaneousObject[key].price %>
                 </h4>
               </div>
               <img src=<%=miscellaneousObject[key].thumbnail_photo_url%>
-              alt="hot latte"
               style="width: 250px; height: 100px; border-radius: 20px"
               />
             </div>
@@ -966,140 +907,6 @@
     </div>
   </main>
 
-  <!-- POP UP -->
-
-  <!-- <div class="popup">
-    <div id="close">
-      <button id="close_button" c>&times;</button>
-    </div>
-    <div class="description">
-      <img alt="Latte"
-        src="" />
-      <h2 id="item_name">Latte</h2>
-      <p>Silky Smooth streamed milk poured over shots of espresso.</p>
-    </div>
-    <form>
-      <div class="size">
-        <div class="option_titles">
-          <h3>Size</h3>
-        </div>
-        <div class="option_boxes">
-          <input type="radio" id="size_s" name="size" value="s" />
-          <div class="option_names">
-            <div>
-              <label for="size_s">Small (8oz)</label>
-            </div>
-            <div class="price">$3.25</div>
-          </div>
-        </div>
-        <div class="option_boxes">
-          <input type="radio" id="size_m" name="size" value="m" />
-          <div class="option_names">
-            <div>
-              <label for="size_m">Medium (12oz)</label>
-            </div>
-            <div class="price">$4.25</div>
-          </div>
-        </div>
-        <div class="option_boxes">
-          <input type="radio" id="size_l" name="size" value="l" />
-          <div class="option_names">
-            <div>
-              <label for="size_l">Large (16oz)</label>
-            </div>
-            <div class="price">$5.25</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="espresso_option">
-        <div class="option_titles">
-          <h3>Espresso Option</h3>
-        </div>
-        <div class="option_boxes">
-          <input type="checkbox" id="decaf" name="espresso_option" value="decaf" />
-          <div class="option_names">
-            <div>
-              <label for="decaf">Make it Decaf</label>
-            </div>
-          </div>
-        </div>
-        <div class="option_boxes">
-          <input type="checkbox" id="extra_shot" name="espresso_option" value="extra_shot" />
-          <div class="option_names">
-            <div>
-              <label for="extra_shot">Extra Espresso Shot</label>
-            </div>
-            <div class="price">$1</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="milk">
-        <div class="option_titles">
-          <h3>Milk</h3>
-        </div>
-        <div class="option_boxes">
-          <input type="radio" id="whole_milk" name="milk" value="whole_milk" />
-          <div class="option_names">
-            <div>
-              <label for="whole_milk">Whole Milk</label>
-            </div>
-          </div>
-        </div>
-        <div class="option_boxes">
-          <input type="radio" id="skim_milk" name="milk" value="skim_milk" />
-          <div class="option_names">
-            <div>
-              <label for="skim_milk">Skim Milk</label>
-            </div>
-          </div>
-        </div>
-        <div class="option_boxes">
-          <input type="radio" id="almond_milk" name="milk" value="almond_milk" />
-          <div class="option_names">
-            <div>
-              <label for="almond_milk">Almond Milk</label>
-            </div>
-            <div class="price">$1</div>
-          </div>
-        </div>
-        <div class="option_boxes">
-          <input type="radio" id="soy_milk" name="milk" value="soy_milk" />
-          <div class="option_names">
-            <div>
-              <label for="soy_milk">Soy Milk</label>
-            </div>
-            <div class="price">$1</div>
-          </div>
-        </div>
-        <div class="option_boxes">
-          <input type="radio" id="oat_milk" name="milk" value="oat_milk" />
-          <div class="option_names">
-            <div>
-              <label for="oat_milk">Oat Milk</label>
-            </div>
-            <div class="price">$1</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="option_titles">
-          <h3>Sepcial Request</h3>
-        </div>
-        <textarea id="special_request"></textarea>
-      </div>
-      <div class="bottom_panel">
-        <div class="quantity_selector">
-          <button type="button" class="quantity_button">-</button>
-          <div id="quantity">1</div>
-          <button type="button" class="quantity_button">+</button>
-        </div>
-        <button type="submit" id="add_cart">Add To Cart</button>
-      </div>
-    </form>
-  </div> -->
-
   <!-- CHECKOUT DIV -->
   <main class="checkout-container">
     <div class="popup-phone">
@@ -1109,12 +916,14 @@
         when your food is ready
       </p>
       <br />
-      <label for="phone" style="font-size: 10px">Phone Number (your mobile phone number is your login)</label><br />
+      <form class="confirm-order" method="POST" action="/confirm-order">
+        <label for="phone" style="font-size: 10px">Phone Number (your mobile phone number is your login)</label><br />
 
-      <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="(123) 456-7890"
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="(123) 456-7890"
         required />
-      <br />
-      <button class="confirm-btn">Confirm order</button>
+        <br />
+        <button class="confirm-btn">Confirm order</button>
+      </form>
     </div>
   </main>
 </body>
