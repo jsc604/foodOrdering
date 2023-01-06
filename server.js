@@ -97,6 +97,10 @@ app.post('/menu', (req, res) => {
 // provide database - return wait time, phone, number, order id
 // send text to customer
 
+app.get('/thanks', (req, res) => {
+  res.render('thankyou');
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
