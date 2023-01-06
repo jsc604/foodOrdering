@@ -16,11 +16,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap" rel="stylesheet" />
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
+  <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/quantity_selector.js"></script>
   <script defer src="/scripts/add_to_cart.js"></script>
   <script defer src="/scripts/limit_checkbox.js"></script>
-
+  <script defer src="/scripts/cart.js"></script>
   <script defer src="/scripts/menu.js"></script>
 
   <style>
@@ -124,20 +125,20 @@
       opacity: 1;
     }
 
-    .slidemenu #slide-item-1:checked~.slider .bar {
+    /* .slidemenu #slide-item-1:checked~.slider .bar {
       margin-left: 0;
-    }
+    } */
 
     .slidemenu #slide-item-2:checked~.slider .bar {
-      margin-left: 25%;
+      margin-left: 0%;
     }
 
     .slidemenu #slide-item-3:checked~.slider .bar {
-      margin-left: 50%;
+      margin-left: 29%;
     }
 
     .slidemenu #slide-item-4:checked~.slider .bar {
-      margin-left: 75%;
+      margin-left: 55%;
     }
 
     /* ANIMATIONS */
@@ -235,7 +236,7 @@
 
     .cart-header,
     .cart-order-items {
-      padding-bottom: 20px;
+      padding-top: 10px;
       border-bottom: 1px solid gray;
     }
 
@@ -263,6 +264,10 @@
     .instruction,
     .item-name {
       padding-bottom: 10px;
+    }
+
+    .flavour {
+      font-size: 14px;
     }
 
     .remove {
@@ -330,6 +335,7 @@
       border-radius: 50px;
       border: none;
       position: fixed;
+      width: 28px;
     }
 
     .option_titles {
@@ -476,11 +482,10 @@
       top: 10%;
       position: fixed;
     }
-
     .popup-phone {
       background-color: white;
       width: 50vh;
-      height: 40vh;
+      height: 50vh;
       position: absolute;
       top: 5%;
       left: 40%;
@@ -494,6 +499,12 @@
     }
 
     #phone {
+      width: 338px;
+      height: 40px;
+      padding-left: 10px;
+      font-size: 16px;
+    }
+    #customer-name {
       width: 338px;
       height: 40px;
       padding-left: 10px;
@@ -542,8 +553,8 @@
 
       <nav class="slidemenu">
         <!-- Item 1 -->
-        <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked />
-        <label for="slide-item-1"><span id="mostpopular-span">Most Popular</span></label>
+        <!-- <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked />
+        <label for="slide-item-1"><span id="mostpopular-span">Most Popular</span></label> -->
 
         <!-- Item 2 -->
         <input type="radio" name="slideItem" id="slide-item-2" class="slide-toggle" checked />
@@ -697,9 +708,9 @@
                 </div>
                 <div>
                   <div class="option_titles">
-                    <h3>Sepcial Request</h3>
+                    <h3>Special Request</h3>
                   </div>
-                  <textarea class="special_request" id="special_request-<%= key%>"></textarea>
+                  <textarea class="special_request" name="special_request" id="special_request-<%= key%>"></textarea>
                 </div>
                 <div class="bottom_panel">
                   <div class="quantity_selector">
@@ -774,7 +785,7 @@
                     </div>
                   </div>
                   <div class="option_boxes">
-                    <input type="radio" id="white_chocolate" name="size" value="white_chocolate" />
+                    <input type="radio" id="white_chocolate" name="flavour" value="white_chocolate" />
                     <div class="option_names">
                       <div>
                         <label for="white_chocolate">White Chocolate</label>
@@ -783,10 +794,10 @@
                   </div>
                 </div>
                   <div class="option_titles">
-                    <h3>Sepcial Request</h3>
+                    <h3>Special Request</h3>
                   </div>
                   <div>
-                  <textarea class="special_request" id="special_request-<%= key%>"></textarea>
+                  <textarea class="special_request" name="special_request" id="special_request-<%= key%>"></textarea>
                 </div>
                 <div class="bottom_panel">
                   <div class="quantity_selector">
@@ -844,7 +855,7 @@
                     <h3>Special Request</h3>
                   </div>
                   <div>
-                  <textarea class="special_request" id="special_request-<%= key%>"></textarea>
+                  <textarea class="special_request" name="special_request" id="special_request-<%= key%>"></textarea>
                 </div>
                 <div class="bottom_panel">
                   <div class="quantity_selector">
@@ -885,8 +896,10 @@
       <div class="cart-info">
         <div class="cart-header">
           <h2>Your Cart (<span class="cart-item-count">0</span>)</h2>
-          <p>Pick up at</p>
-          <p>Ready in</p>
+          <h5 style="font-size: 14px">Pick up at: 999 Lighthouse Street</h5>
+          <div style="display: flex; justify-content: space-between; font-size: 17px; padding-bottom: 5px;">
+            <div>Ready in:</div> <div style="display: flex;"><div id="estimate_time">0</div> <div style="padding-left: 4px;">min</div></div>
+          </div>
         </div>
         <div class="cart-order-items"></div>
         <button class="checkout" style="
@@ -896,7 +909,7 @@
               padding-left: 20px;
               padding-right: 20px;
             ">
-          Checkout <span class="subtotal">$0</span>
+          Checkout<div>$ <span class="subtotal">0</span></div>
         </button>
       </div>
     </div>
@@ -915,15 +928,19 @@
         when your food is ready
       </p>
       <br />
-      <form class="confirm-order" method="POST" action="/confirm-order">
+      <form id="confirm-order" method="post" action="/checkout">
+        <input id="customer-name" name="name" placeholder="Enter Your Name"
+        required />
       <label for="phone" style="font-size: 10px">Phone Number (your mobile phone number is your login)</label><br />
 
         <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="(123) 456-7890"
         required />
       <br />
-      <button class="confirm-btn">Confirm order</button>
+      <button type="submit" class="confirm-btn">Confirm order</button>
+
+    </form>
     </div>
-  </form>
+
   </main>
 </body>
 

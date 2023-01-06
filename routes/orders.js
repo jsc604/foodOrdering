@@ -15,7 +15,7 @@ router.get('/new', (req, res) => {
             ordersObject[order.order_id] = {
               id: order.order_id,
               name: order.customer_name,
-              items: [`${order.quantity} x ${order.item_name} - [size: ${order.size}], [milk: ${order.milk}], [option: ${order.espresso_option}], [special request: ${order.special_request}]`],
+              items: [`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`],
               completed_at: order.completed_at,
               start_time: order.start_time
             };
@@ -23,7 +23,7 @@ router.get('/new', (req, res) => {
             ordersObject[order.order_id] = {
               id: order.order_id,
               name: order.customer_name,
-              items: [`${order.quantity} x ${order.item_name} - [flavor: ${order.flavour}], [special request: ${order.special_request}]`],
+              items: [`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`],
               completed_at: order.completed_at,
               start_time: order.start_time
             };
@@ -31,18 +31,18 @@ router.get('/new', (req, res) => {
             ordersObject[order.order_id] = {
               id: order.order_id,
               name: order.customer_name,
-              items: [`${order.quantity} x ${order.item_name} - [special request: ${order.special_request}]`],
+              items: [`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`],
               completed_at: order.completed_at,
               start_time: order.start_time
             };
           }
         } else if (ordersObject[order.order_id]) {
           if (order.category_id === 1) {
-            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [size: ${order.size}], [milk: ${order.milk}], [option: ${order.espresso_option}], [special request: ${order.special_request}]`);
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`);
           } else if (order.category_id === 2) {
-            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [flavor: ${order.flavour}], [special request: ${order.special_request}]`);
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`);
           } else if (order.category_id === 3) {
-            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [special request: ${order.special_request}]`);
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`);
           }
         }
       }
@@ -65,7 +65,7 @@ router.get('/complete', (req, res) => {
             ordersObject[order.order_id] = {
               id: order.order_id,
               name: order.customer_name,
-              items: [`${order.quantity} x ${order.item_name} - [size: ${order.size}], [milk: ${order.milk}], [option: ${order.espresso_option}], [special request: ${order.special_request}]`],
+              items: [`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`],
               completed_at: order.completed_at,
               picked_up: order.picked_up
             };
@@ -73,7 +73,7 @@ router.get('/complete', (req, res) => {
             ordersObject[order.order_id] = {
               id: order.order_id,
               name: order.customer_name,
-              items: [`${order.quantity} x ${order.item_name} - [flavor: ${order.flavour}], [special request: ${order.special_request}]`],
+              items: [`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`],
               completed_at: order.completed_at,
               picked_up: order.picked_up
             };
@@ -81,18 +81,18 @@ router.get('/complete', (req, res) => {
             ordersObject[order.order_id] = {
               id: order.order_id,
               name: order.customer_name,
-              items: [`${order.quantity} x ${order.item_name} - [special request: ${order.special_request}]`],
+              items: [`${order.quantity} x ${order.item_name} - [[instructions: ${order.instructions}]`],
               completed_at: order.completed_at,
               picked_up: order.picked_up
             };
           }
         } else if (ordersObject[order.order_id]) {
           if (order.category_id === 1) {
-            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [size: ${order.size}], [milk: ${order.milk}], [option: ${order.espresso_option}], [special request: ${order.special_request}]`);
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`);
           } else if (order.category_id === 2) {
-            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [flavor: ${order.flavour}], [special request: ${order.special_request}]`);
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`);
           } else if (order.category_id === 3) {
-            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [special request: ${order.special_request}]`);
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`);
           }
         }
       }

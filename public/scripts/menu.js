@@ -3,10 +3,8 @@ $(document).ready(function () {
   $(".description-picture").click(function () {
     //find the name of item
     const data = $(this).data();
-    console.log(this);
     const popup = $('#popup-' + data.id)
-    console.log('data',data);
-    console.log('popup',popup);
+
     $(".popup").hide();
     popup.show();
   });
@@ -20,7 +18,7 @@ $(document).ready(function () {
   });
 
   //CLOSE
-  $(".close").click(function () {
+  $(".close_button").click(function () {
     $('.popup').hide();
   });
 
@@ -61,7 +59,7 @@ $(document).ready(function () {
 
   //REMOVE ITEM FROM CART
   $(".cart-order-items").on("click", ".remove", function () {
-    $(this).parent().remove();
+    $(this).parent().parent().parent().remove();
 
   });
 

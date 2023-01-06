@@ -45,6 +45,7 @@ const usersRoutes = require('./routes/users');
 const orderRoutes = require('./routes/orders');
 const menuRoutes = require('./routes/menu-api');
 
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
@@ -53,6 +54,7 @@ app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/orders', orderRoutes);
 app.use('/menu', menuRoutes);
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -61,26 +63,23 @@ app.use('/menu', menuRoutes);
 
 app.get('/', (req, res) => {
   console.log("req", req.session);
-const id = req.session.user_id;
-//fetch user from database
-const user = {id, name: "Alice"};
+  const id = req.session.user_id;
+  //fetch user from database
+  const user = { id, name: "Alice" };
 
-if (!user) {
-  res.render('menu');
-  return;
-}
+  if (!user) {
+    res.render('menu');
+    return;
+  }
 
 
 
-  res.render('index', {user});
+  res.render('index', { user });
 });
-app.get('/popup', (req, res) => {
-  res.render('popup');
-})
 
 app.get('/login/:id', (req, res) => {
   const id = req.params.id;
-// Save id in session
+  // Save id in session
   req.session.user_id = id;
   res.redirect('/');
 });
@@ -89,18 +88,42 @@ app.post('/menu', (req, res) => {
   res.json(req.body);
 });
 
-// make an order
-//insert into database
-//send text message to restaurant
-
-
-//POST - after accepting order
-// provide database - return wait time, phone, number, order id
-// send text to customer
-
 app.get('/thanks', (req, res) => {
   res.render('thankyou');
 });
+
+
+//checkout, move to checkout folder later
+const userQueries = require('./db/queries/menu');
+app.post('/checkout', (req, res) => {
+  const data = req.body;
+  console.log('recieve')
+  userQueries.addCustomer(data)
+    .then(customerData => {
+      console.log('customer data added succesfully');
+      data.id = customerData.id
+      userQueries.createNewOrder(data)
+        .then(orderData => {
+          console.log('order added successfully');
+          for (let orderItem of data.orderItems) {
+            orderData.quantity = orderItem.quantity;
+            orderData.total_price = orderItem.price;
+            orderData.instructions = orderItem.instructions;
+            orderData.item_id = orderItem.menu_item_id;
+            console.log(orderData);
+            userQueries.addItemToOrder(orderData)
+              .then(r => {
+                console.log('order item added successfully.');
+                messageToRestaurant(orderData.id);
+                res.redirect('/thanks');
+              })
+          }
+        });
+    })
+    .catch(err => console.log(err));
+
+});
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

@@ -15,13 +15,13 @@ const client = require("twilio")(accountSid, authToken);
 // })
 // .then((message) => console.log(message));
 
-const messageToCustomer = (name, orderID, waitTime) => {
+const messageToCustomer = (name, orderID, waitTime, phone) => {
   client.messages
     .create({
       body: `Hi ${name}, your order ID is ${orderID}. The estimated wait time is ${waitTime} minutes`,
       from: fromNumber,
       // will replace to number with the ones from db later - CUSTOMER NUMBER
-      to: toNumber,
+      to: phone,
     })
     .then((message) => console.log(`order id: ${orderID}`))
     .catch((err) => {

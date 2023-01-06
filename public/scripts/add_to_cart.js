@@ -16,7 +16,7 @@ $(document).ready(function () {
       }
     }
 
-    if (id >4 && id <= 7) {
+    if (id > 4 && id <= 7) {
       if (!formData.includes('flavour')) {
         return;
       }
@@ -29,13 +29,13 @@ $(document).ready(function () {
     //get price
     itemData.price = parseFloat((($(`#item-price-${id}`).text()).trim()).slice(1));
 
-    console.log('itemData',itemData);
-
 
     for (const addOn of addOns) {
       const data = addOn.split('=');
       itemData[data[0]] = data[1];
     }
+
+
     //update price for diff size
     if (itemData.size === 'medium') {
       itemData.price += 0.75;
@@ -48,15 +48,17 @@ $(document).ready(function () {
     //update price for espresso shots
     if (itemData.espresso_option === "extra_shot") itemData.price += 1;
 
-    //check if there is a special request
-    if ($(`#special_request-${id}`).val()) {
-      //add special request to itemData
-      itemData.special_request = $(`special_request-${id}`).val();
-    }
+
     //submit data
     $.post('/menu', itemData)
       .then(data => {
         createCartElement(data, id);
+        const updatedPrice = parseFloat($('.subtotal').text()) + data.price * data.quantity;
+        const updatedTime = parseInt($('#estimate_time').text()) + 3 * data.quantity;
+        const updatedCartCount = parseInt($('.cart-item-count').text()) + 1;
+        $('.subtotal').text(updatedPrice);
+        $('#estimate_time').text(updatedTime);
+        $('.cart-item-count').text(updatedCartCount);
       });
 
     //reset page
@@ -82,43 +84,59 @@ $(document).ready(function () {
   //creating html element for each item
   const createCartElement = function (data, id) {
     let instruction = "";
+
+    console.log(data.special_request)
     const cart = $('.cart-order-items');
+
     //coffee
     if (id <= 4) {
       instruction = `${data.size}, ${data.milk}`;
-      if (data.espresso_option !== undefined) instruction.concat(`, ${data.espresso_option}`);
-      if (data.special_request !== undefined) instruction.concat(`, ${data.special_request}`);
+      if (data.espresso_option !== undefined) instruction+=`, ${data.espresso_option}`;
+      //check if there is a special request
+      if (data.special_request !== undefined) {
+        //add special request to instruction
+        instruction+= `, ${data.special_request}`;
+      }
       cart.append(`
-    <div class="cart-order-item">
+    <div class="cart-order-item" >
       <div class="quantity"><h4>${data.quantity}</h4></div>
           <div class="item-description">
-            <h4 class="item-name">${data.name}</h4>
+            <h4 class="item-name" data-id="${id}">${data.name}</h4>
             <p class="instruction">${instruction}</p>
+            <div class="price"><h4 class="remove">remove</h4></div>
           </div>
-          <span class="remove">Remove</span>
-          <div class="price"><h4>$${data.price * data.quantity}</h4></div>
+          <h4>$${data.price * data.quantity}</h4>
     </div>
       `)
-    } else if (id >4 && id <= 7) { //bakery
+    } else if (id > 4 && id <= 7) { //bakery
+      instruction = `${data.flavour}`;
+      if (data.special_request !== undefined) {
+        instruction+= `, ${data.special_request}`;
+      }
       cart.append(`
-      <div class="cart-order-item">
+      <div class="cart-order-item" >
+      <div class="quantity"><h4>${data.quantity}</h4></div>
+          <div class="item-description">
+            <h4 class="item-name" data-id="${id}">${data.name}</h4>
+            <p class="instruction">${instruction}</p>
+            <div class="price"><h4 class="remove">remove</h4></div>
+          </div>
+          <h4>$${data.price * data.quantity}</h4>
+    </div>`)
+    } else if (id > 7) { //miscellaneous
+      if (data.special_request !== undefined) {
+        instruction+= `${data.special_request}`;
+      }
+      cart.append(`
+        <div class="cart-order-item" >
         <div class="quantity"><h4>${data.quantity}</h4></div>
             <div class="item-description">
-              <h4 class="item-name">${data.name}</h4>
-              <p class="instruction">${data.flavour}</p>
+              <h4 class="item-name" data-id="${id}">${data.name}</h4>
+              <p class="instruction">${instruction}</p>
+              <div class="price"><h4 class="remove">remove</h4></div>
             </div>
-            <span class="remove">Remove</span>
-            <div class="price"><h4>$${data.price * data.quantity}</h4></div>
-        </div>`) } else if (id > 7) { //miscellaneous
-        cart.append(`
-      <div class="cart-order-item">
-        <div class="quantity"><h4>${data.quantity}</h4></div>
-            <div class="item-description">
-              <h4 class="item-name">${data.name}</h4>
-            </div>
-            <span class="remove">Remove</span>
-            <div class="price"><h4>$${data.price * data.quantity}</h4></div>
-        </div>`)
+            <h4 class="item-price">$${data.price * data.quantity}</h4>
+      </div>`)
     }
 
   };
