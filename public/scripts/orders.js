@@ -33,7 +33,6 @@ $(() => {
     });
   });
 
-
   // COMPLETED BUTTON
   $('#completeForm').submit(function(event) {
     event.preventDefault();
