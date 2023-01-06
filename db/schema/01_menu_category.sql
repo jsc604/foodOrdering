@@ -28,6 +28,8 @@ CREATE TABLE menu_category (
 --   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE
 -- );
 
+
+
 -- DROP TABLE IF EXISTS orders CASCADE;
 -- CREATE TABLE orders (
 --   id SERIAL PRIMARY KEY,
