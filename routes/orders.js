@@ -11,15 +11,39 @@ router.get('/new', (req, res) => {
 
       for (let order of newOrders) {
         if (!ordersObject[order.order_id]) {
-          ordersObject[order.order_id] = {
-            id: order.order_id,
-            name: order.customer_name,
-            items: [`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`],
-            completed_at: order.completed_at,
-            start_time: order.start_time
-          };
-        } else {
-          ordersObject[order.order_id].items.push(`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`);
+          if (order.category_id === 1) {
+            ordersObject[order.order_id] = {
+              id: order.order_id,
+              name: order.customer_name,
+              items: [`${order.quantity} x ${order.item_name} - [size: ${order.size}], [milk: ${order.milk}], [option: ${order.espresso_option}], [special request: ${order.special_request}]`],
+              completed_at: order.completed_at,
+              start_time: order.start_time
+            };
+          } else if (order.category_id === 2) {
+            ordersObject[order.order_id] = {
+              id: order.order_id,
+              name: order.customer_name,
+              items: [`${order.quantity} x ${order.item_name} - [flavor: ${order.flavour}], [special request: ${order.special_request}]`],
+              completed_at: order.completed_at,
+              start_time: order.start_time
+            };
+          } else if (order.category_id === 3) {
+            ordersObject[order.order_id] = {
+              id: order.order_id,
+              name: order.customer_name,
+              items: [`${order.quantity} x ${order.item_name} - [special request: ${order.special_request}]`],
+              completed_at: order.completed_at,
+              start_time: order.start_time
+            };
+          }
+        } else if (ordersObject[order.order_id]) {
+          if (order.category_id === 1) {
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [size: ${order.size}], [milk: ${order.milk}], [option: ${order.espresso_option}], [special request: ${order.special_request}]`);
+          } else if (order.category_id === 2) {
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [flavor: ${order.flavour}], [special request: ${order.special_request}]`);
+          } else if (order.category_id === 3) {
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [special request: ${order.special_request}]`);
+          }
         }
       }
 
@@ -37,15 +61,39 @@ router.get('/complete', (req, res) => {
 
       for (let order of completedOrders) {
         if (!ordersObject[order.order_id]) {
-          ordersObject[order.order_id] = {
-            id: order.order_id,
-            name: order.customer_name,
-            items: [`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`],
-            completed_at: order.completed_at,
-            picked_up: order.picked_up
-          };
-        } else {
-          ordersObject[order.order_id].items.push(`${order.item_name} - (options: ${order.item_option}), (addons: ${order.item_addon})`);
+          if (order.category_id === 1) {
+            ordersObject[order.order_id] = {
+              id: order.order_id,
+              name: order.customer_name,
+              items: [`${order.quantity} x ${order.item_name} - [size: ${order.size}], [milk: ${order.milk}], [option: ${order.espresso_option}], [special request: ${order.special_request}]`],
+              completed_at: order.completed_at,
+              picked_up: order.picked_up
+            };
+          } else if (order.category_id === 2) {
+            ordersObject[order.order_id] = {
+              id: order.order_id,
+              name: order.customer_name,
+              items: [`${order.quantity} x ${order.item_name} - [flavor: ${order.flavour}], [special request: ${order.special_request}]`],
+              completed_at: order.completed_at,
+              picked_up: order.picked_up
+            };
+          } else if (order.category_id === 3) {
+            ordersObject[order.order_id] = {
+              id: order.order_id,
+              name: order.customer_name,
+              items: [`${order.quantity} x ${order.item_name} - [special request: ${order.special_request}]`],
+              completed_at: order.completed_at,
+              picked_up: order.picked_up
+            };
+          }
+        } else if (ordersObject[order.order_id]) {
+          if (order.category_id === 1) {
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [size: ${order.size}], [milk: ${order.milk}], [option: ${order.espresso_option}], [special request: ${order.special_request}]`);
+          } else if (order.category_id === 2) {
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [flavor: ${order.flavour}], [special request: ${order.special_request}]`);
+          } else if (order.category_id === 3) {
+            ordersObject[order.order_id].items.push(`${order.quantity} x ${order.item_name} - [special request: ${order.special_request}]`);
+          }
         }
       }
 
