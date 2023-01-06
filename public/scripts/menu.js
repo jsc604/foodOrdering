@@ -60,7 +60,9 @@ $(document).ready(function () {
   //REMOVE ITEM FROM CART
   $(".cart-order-items").on("click", ".remove", function () {
     $(this).parent().parent().parent().remove();
-
+    $('.subtotal').text(0);
+        $('#estimate_time').text(0);
+        $('.cart-item-count').text(0);
   });
 
 

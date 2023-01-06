@@ -24,6 +24,10 @@ $(document).ready(function() {
     $.post('/checkout', sendData)
       .then(data => {
         $('.popup-phone').hide();
+        $('.cart-order-item').remove();
+        $('.subtotal').text(0);
+        $('#estimate_time').text(0);
+        $('.cart-item-count').text(0);
       })
       .catch(err => {
         console.log('error at checkout',err);
