@@ -21,7 +21,7 @@ const messageToCustomer = (name, orderID, waitTime, phone) => {
       body: `Hi ${name}, your order ID is ${orderID}. The estimated wait time is ${waitTime} minutes`,
       from: fromNumber,
       // will replace to number with the ones from db later - CUSTOMER NUMBER
-      to: phone,
+      to: toNumber,
     })
     .then((message) => console.log(`order id: ${orderID}`))
     .catch((err) => {
