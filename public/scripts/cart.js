@@ -11,7 +11,7 @@ $(document).ready(function() {
       const instruction = $(item).find('.instruction').text();
       orderItems.push({quantity, name, price, instruction});
     }
-    console.log(orderItems);
+    console.log('orderItems', orderItems);
   })
 
   $.ajax({
