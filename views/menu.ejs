@@ -115,7 +115,7 @@
     }
 
     .slider .bar {
-      width: 25%;
+      width: 33%;
       height: 5px;
       background: black;
       border-radius: 2px;
@@ -536,7 +536,7 @@
       <div class="above-menu-descriptions">
         <!-- LOGO  -->
         <div class="logo items" id="logo">
-          <a href="#"><img src="/images/cup.png" alt="logo" style="width: 70px; height: 40px" /></a>
+          <a href="/"><img src="/images/cup.png" alt="logo" style="width: 70px; height: 40px" /></a>
         </div>
 
         <p class="items">Coffee • Baked Goods</p>
@@ -908,6 +908,8 @@
               justify-content: space-between;
               padding-left: 20px;
               padding-right: 20px;
+              height: 50px;
+              font-size: 18px;
             ">
           Checkout<div>$ <span class="subtotal">0</span></div>
         </button>
@@ -930,7 +932,7 @@
       <br />
       <form id="confirm-order" method="post" action="/checkout">
         <input id="customer-name" name="name" placeholder="Enter Your Name"
-        required />
+        required /><br>
       <label for="phone" style="font-size: 10px">Phone Number (your mobile phone number is your login)</label><br />
 
         <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="(123) 456-7890"
