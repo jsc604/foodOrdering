@@ -16,7 +16,7 @@ router.get('/new', (req, res) => {
               id: order.order_id,
               name: order.customer_name,
               items: [`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`],
-              completed_at: order.completed_at,
+              completed_at: order.completion_time,
               start_time: order.start_time
             };
           } else if (order.category_id === 2) {
@@ -24,7 +24,7 @@ router.get('/new', (req, res) => {
               id: order.order_id,
               name: order.customer_name,
               items: [`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`],
-              completed_at: order.completed_at,
+              completed_at: order.completion_time,
               start_time: order.start_time
             };
           } else if (order.category_id === 3) {
@@ -32,7 +32,7 @@ router.get('/new', (req, res) => {
               id: order.order_id,
               name: order.customer_name,
               items: [`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`],
-              completed_at: order.completed_at,
+              completed_at: order.completion_time,
               start_time: order.start_time
             };
           }
@@ -66,7 +66,7 @@ router.get('/complete', (req, res) => {
               id: order.order_id,
               name: order.customer_name,
               items: [`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`],
-              completed_at: order.completed_at,
+              completed_at: order.completion_time,
               picked_up: order.picked_up
             };
           } else if (order.category_id === 2) {
@@ -74,7 +74,7 @@ router.get('/complete', (req, res) => {
               id: order.order_id,
               name: order.customer_name,
               items: [`${order.quantity} x ${order.item_name} - [instructions: ${order.instructions}]`],
-              completed_at: order.completed_at,
+              completed_at: order.completion_time,
               picked_up: order.picked_up
             };
           } else if (order.category_id === 3) {
@@ -82,7 +82,7 @@ router.get('/complete', (req, res) => {
               id: order.order_id,
               name: order.customer_name,
               items: [`${order.quantity} x ${order.item_name} - [[instructions: ${order.instructions}]`],
-              completed_at: order.completed_at,
+              completed_at: order.completion_time,
               picked_up: order.picked_up
             };
           }
