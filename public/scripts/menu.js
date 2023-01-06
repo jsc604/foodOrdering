@@ -1,7 +1,13 @@
 $(document).ready(function () {
   //OPEN
   $(".description-picture").click(function () {
-    $(".popup").show();
+    //find the name of item
+    const data = $(this).data();
+    const popup = $('#popup-' + data.id)
+    console.log('data',data);
+    console.log('popup',popup);
+    $(".popup").hide();
+    popup.show();
   });
 
   $(".checkout").click(function () {
@@ -14,7 +20,7 @@ $(document).ready(function () {
 
   //CLOSE
   $("#close").click(function () {
-    $(".popup").hide();
+    $('.popup').hide();
   });
 
   //CLOSE POPUP WHEN CLICK OUTSIDE

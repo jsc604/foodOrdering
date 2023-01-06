@@ -38,27 +38,27 @@ $(document).ready(function () {
       });
 
     //reset page
-      resetPage();
+    resetPage();
   })
 
 
   //CART
 
   //reset page
-  const resetPage = function() {
-      //clear special request
-      $('#special_request').val("");
-      //reset radio buttons and checkbox
-      $(':checkbox').prop('checked', false);
-      $(':radio').prop('checked', false);
-      //reset quantity
-      $('#quantity').text(1);
-      //close pop up screen
-      $(".popup").hide();
+  const resetPage = function () {
+    //clear special request
+    $('#special_request').val("");
+    //reset radio buttons and checkbox
+    $(':checkbox').prop('checked', false);
+    $(':radio').prop('checked', false);
+    //reset quantity
+    $('#quantity').text(1);
+    //close pop up screen
+    $(".popup").hide();
   }
 
   //creating html element for each item
-  const createCartElement = function(data) {
+  const createCartElement = function (data) {
     let instruction = `${data.size}, ${data.milk}`;
     if (data.espresso_option !== undefined) instruction.concat(`, ${data.espresso_option}`);
     if (data.special_request !== undefined) instruction.concat(`, ${data.special_request}`);
@@ -68,13 +68,16 @@ $(document).ready(function () {
 
     const cart = $('.cart-order-items');
     cart.append(`
-          <div class="quantity"><h4>${data.quantity}</h4></div>
+    <div class="cart-order-item">
+      <div class="quantity"><h4>${data.quantity}</h4></div>
           <div class="item-description">
             <h4 class="item-name">${data.name}</h4>
             <p class="instruction">${instruction}</p>
-            <span class="remove">Remove</span>
           </div>
-          <div class="price"><h4>$${data.price*data.quantity}</h4></div>
+          <span class="remove">Remove</span>
+          <div class="price"><h4>$${data.price * data.quantity}</h4></div>
+    </div>
+
       `)
   };
 
