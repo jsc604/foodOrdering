@@ -4,22 +4,32 @@ $(document).ready(function () {
     let itemData = {};
     const formData = $(this).serialize();
     const addOns = formData.split('&');
+    const id = $(this).data().id;
 
     //must include size
-    if (!formData.includes('size')) {
-      //error message
-      return;
-    } else if (!formData.includes('milk')) {
-      return;
+    if (id <= 4) {
+      if (!formData.includes('size')) {
+        //error message
+        return;
+      } else if (!formData.includes('milk')) {
+        return;
+      }
     }
 
-    const id = $(this).data().id;
+    if (id >4 && id <= 7) {
+      if (!formData.includes('flavour')) {
+        return;
+      }
+    }
+
     //get quantity
     itemData.quantity = $(`#quantity-${id}`).text();
     //get name
     itemData.name = ($(`#item-name-${id}`).text()).trim();
     //get price
     itemData.price = parseFloat((($(`#item-price-${id}`).text()).trim()).slice(1));
+
+    console.log('itemData',itemData);
 
 
     for (const addOn of addOns) {
@@ -43,11 +53,10 @@ $(document).ready(function () {
       //add special request to itemData
       itemData.special_request = $(`special_request-${id}`).val();
     }
-
     //submit data
     $.post('/menu', itemData)
       .then(data => {
-        createCartElement(data);
+        createCartElement(data, id);
       });
 
     //reset page
@@ -71,17 +80,15 @@ $(document).ready(function () {
   }
 
   //creating html element for each item
-  const createCartElement = function (data) {
-    let instruction = `${data.size}, ${data.milk}`;
-    if (data.espresso_option !== undefined) instruction.concat(`, ${data.espresso_option}`);
-    if (data.special_request !== undefined) instruction.concat(`, ${data.special_request}`);
-
-    //if option has a price, need to add on the total price
-
-
+  const createCartElement = function (data, id) {
+    let instruction = "";
     const cart = $('.cart-order-items');
-    console.log('data.name',data.name);
-    cart.append(`
+    //coffee
+    if (id <= 4) {
+      instruction = `${data.size}, ${data.milk}`;
+      if (data.espresso_option !== undefined) instruction.concat(`, ${data.espresso_option}`);
+      if (data.special_request !== undefined) instruction.concat(`, ${data.special_request}`);
+      cart.append(`
     <div class="cart-order-item">
       <div class="quantity"><h4>${data.quantity}</h4></div>
           <div class="item-description">
@@ -91,19 +98,30 @@ $(document).ready(function () {
           <span class="remove">Remove</span>
           <div class="price"><h4>$${data.price * data.quantity}</h4></div>
     </div>
-
       `)
-  };
-
-  //rendering all items submitted
-  const renderItems = function (items) {
-    for (const item of items) {
-      //creating html element for each item
-      const $item_html = createCartElement(item);
-      $('.cart-order-items').append($item_html);
+    } else if (id >4 && id <= 7) { //bakery
+      cart.append(`
+      <div class="cart-order-item">
+        <div class="quantity"><h4>${data.quantity}</h4></div>
+            <div class="item-description">
+              <h4 class="item-name">${data.name}</h4>
+              <p class="instruction">${data.flavour}</p>
+            </div>
+            <span class="remove">Remove</span>
+            <div class="price"><h4>$${data.price * data.quantity}</h4></div>
+        </div>`) } else if (id > 7) { //miscellaneous
+        cart.append(`
+      <div class="cart-order-item">
+        <div class="quantity"><h4>${data.quantity}</h4></div>
+            <div class="item-description">
+              <h4 class="item-name">${data.name}</h4>
+            </div>
+            <span class="remove">Remove</span>
+            <div class="price"><h4>$${data.price * data.quantity}</h4></div>
+        </div>`)
     }
-  }
 
+  };
 
 
 
