@@ -3,6 +3,7 @@ $(document).ready(function () {
   $(".description-picture").click(function () {
     //find the name of item
     const data = $(this).data();
+    console.log(this);
     const popup = $('#popup-' + data.id)
     console.log('data',data);
     console.log('popup',popup);
@@ -19,7 +20,7 @@ $(document).ready(function () {
   });
 
   //CLOSE
-  $("#close").click(function () {
+  $(".close").click(function () {
     $('.popup').hide();
   });
 
@@ -63,5 +64,7 @@ $(document).ready(function () {
     $(this).parent().remove();
 
   });
+
+
 
 });

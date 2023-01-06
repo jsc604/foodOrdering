@@ -1,34 +1,47 @@
 $(document).ready(function () {
-  $('form').submit(function (event) {
+  $('.add-to-cart').submit(function (event) {
     event.preventDefault();
     let itemData = {};
     const formData = $(this).serialize();
     const addOns = formData.split('&');
 
     //must include size
-    if (!formData.includes('size') || !formData.includes('milk')) {
+    if (!formData.includes('size')) {
       //error message
-      console.log("need size!");
+      return;
+    } else if (!formData.includes('milk')) {
       return;
     }
 
+    const id = $(this).data().id;
     //get quantity
-    itemData.quantity = $('#quantity').text();
+    itemData.quantity = $(`#quantity-${id}`).text();
     //get name
-    itemData.name = $('#item_name').text();
+    itemData.name = ($(`#item-name-${id}`).text()).trim();
     //get price
-    itemData.price = '3.5';
+    itemData.price = parseFloat((($(`#item-price-${id}`).text()).trim()).slice(1));
 
 
     for (const addOn of addOns) {
       const data = addOn.split('=');
       itemData[data[0]] = data[1];
     }
+    //update price for diff size
+    if (itemData.size === 'medium') {
+      itemData.price += 0.75;
+    } else if (itemData.size === 'large') {
+      itemData.price += 1.5;
+    }
+    //update price for diff milk
+    if (itemData.milk === "almond_milk" || itemData.milk === "oat_milk" || itemData.milk === "soy_milk") itemData.price += 1;
+
+    //update price for espresso shots
+    if (itemData.espresso_option === "extra_shot") itemData.price += 1;
 
     //check if there is a special request
-    if ($('#special_request').val()) {
+    if ($(`#special_request-${id}`).val()) {
       //add special request to itemData
-      itemData.special_request = $('#special_request').val();
+      itemData.special_request = $(`special_request-${id}`).val();
     }
 
     //submit data
@@ -38,21 +51,21 @@ $(document).ready(function () {
       });
 
     //reset page
-    resetPage();
+    resetPage(id);
   })
 
 
   //CART
 
   //reset page
-  const resetPage = function () {
+  const resetPage = function (id) {
     //clear special request
-    $('#special_request').val("");
+    $('.special_request').val("");
     //reset radio buttons and checkbox
     $(':checkbox').prop('checked', false);
     $(':radio').prop('checked', false);
     //reset quantity
-    $('#quantity').text(1);
+    $(`#quantity-${id}`).text(1);
     //close pop up screen
     $(".popup").hide();
   }
@@ -67,6 +80,7 @@ $(document).ready(function () {
 
 
     const cart = $('.cart-order-items');
+    console.log('data.name',data.name);
     cart.append(`
     <div class="cart-order-item">
       <div class="quantity"><h4>${data.quantity}</h4></div>
