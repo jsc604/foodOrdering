@@ -103,7 +103,8 @@ $(document).ready(function () {
           <div class="item-description">
             <h4 class="item-name" data-id="${id}">${data.name}</h4>
             <p class="instruction">${instruction}</p>
-            <div class="price"><h4 class="remove">remove</h4></div>
+            <div class="price"><h4 class="remove" data-quantity="${data.quantity}"
+            data-price="${data.price}">remove</h4></div>
           </div>
           <h4>$${data.price * data.quantity}</h4>
     </div>
@@ -119,7 +120,9 @@ $(document).ready(function () {
           <div class="item-description">
             <h4 class="item-name" data-id="${id}">${data.name}</h4>
             <p class="instruction">${instruction}</p>
-            <div class="price"><h4 class="remove">remove</h4></div>
+            <div class="price"><h4 class="remove" data-quantity="${data.quantity}"
+            data-price="${data.price}"
+            >remove</h4></div>
           </div>
           <h4>$${data.price * data.quantity}</h4>
     </div>`)
@@ -133,7 +136,8 @@ $(document).ready(function () {
             <div class="item-description">
               <h4 class="item-name" data-id="${id}">${data.name}</h4>
               <p class="instruction">${instruction}</p>
-              <div class="price"><h4 class="remove">remove</h4></div>
+              <div class="price"><h4 class="remove" data-quantity="${data.quantity}"
+              data-price="${data.price}">remove</h4></div>
             </div>
             <h4 class="item-price">$${data.price * data.quantity}</h4>
       </div>`)

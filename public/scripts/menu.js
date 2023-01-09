@@ -60,9 +60,17 @@ $(document).ready(function () {
   //REMOVE ITEM FROM CART
   $(".cart-order-items").on("click", ".remove", function () {
     $(this).parent().parent().parent().remove();
-    $('.subtotal').text(0);
-        $('#estimate_time').text(0);
-        $('.cart-item-count').text(0);
+    const price = $(this).data("price");
+    const quantity = $(this).data("quantity");
+    console.log(price);
+    console.log(quantity);
+    console.log(this);
+    const updatedPrice = parseFloat($('.subtotal').text()) - price * quantity;
+    const updatedTime = parseInt($('#estimate_time').text()) - 3 * quantity;
+    const updatedCartCount = parseInt($('.cart-item-count').text()) - 1;
+    $('.subtotal').text(updatedPrice);
+    $('#estimate_time').text(updatedTime);
+    $('.cart-item-count').text(updatedCartCount);
   });
 
 
