@@ -1,5 +1,7 @@
 LHL Node Skeleton
 =========
+## Final Product
+!["Customer side demo - once submit in name and phone number, twilio will send a message to restaurant end"](https://github.com/jsc604/foodOrdering/blob/master/public/images/foodordering.gif)
 
 ## Project Setup
 
